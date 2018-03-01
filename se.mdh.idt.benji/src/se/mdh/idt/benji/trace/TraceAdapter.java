@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.EcoreUtil2;
 
+/**
+ * @author Lorenzo Addazi 
+ **/
 public class TraceAdapter extends AdapterImpl {
 	
 	// referenced trace

@@ -1,5 +1,5 @@
 @Ecore(name='Trace', nsURI='http://www.mdh.se/idt/benji/trace/Trace')
-@GenModel(name='Trace', prefix='Trace', modelName='Trace', modelDirectory="se.mdh.idt.benji/src-gen")
+@GenModel(name='Trace', prefix='Trace', modelName='Trace', modelDirectory="se.mdh.idt.benji/src")
 package se.mdh.idt.benji.trace
 
 import org.eclipse.emf.ecore.EObject

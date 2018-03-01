@@ -8,7 +8,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -95,9 +94,6 @@ public class TraceBuilder {
 			TraceLink traceLink = traceFactory.createTraceLink(); 
 			traceLink.setSource(source);
 			traceLink.setTarget(target);
-			
-			// target.eAdapters().add(new TraceAdapter()); 
-			
 			return traceLink; 
 		}
 		
