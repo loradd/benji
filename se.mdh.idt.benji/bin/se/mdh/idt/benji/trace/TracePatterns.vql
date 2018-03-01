@@ -1,0 +1,42 @@
+package se.mdh.idt.benji.trace
+
+import 'http://www.eclipse.org/emf/2002/Ecore'
+import 'http://www.mdh.se/idt/benji/trace/Trace'
+
+// trace link - source
+pattern source(traceLink : TraceLink, source : EObject) = {
+	TraceLink.source(traceLink, source);
+}
+
+// trace link - target
+pattern target(traceLink : TraceLink, target : EObject) = {
+	TraceLink.target(traceLink, target); 	
+}
+
+// trace link - initially existing element
+pattern initiallyExisting(source : EObject) = {
+	find source(_, source); 
+}
+
+// trace link - currently existing element
+pattern currentlyExisting(target : EObject) = {
+	find target(_, target);  
+}
+
+// trace link - created element
+pattern created(target : EObject) = {
+	neg find source(traceLink, _); 
+	find target(traceLink, target); 
+}
+
+// trace link - deleted element
+pattern deleted(source : EObject) = {
+	find source(traceLink, source); 
+	neg find target(traceLink, _); 
+}
+
+// trace link - preserved element
+pattern preserved(source : EObject, target : EObject) = {
+	find source(traceLink, source); 
+	find target(traceLink, target); 
+}
