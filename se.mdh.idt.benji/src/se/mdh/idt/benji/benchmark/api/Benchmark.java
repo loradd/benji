@@ -71,11 +71,11 @@ public class Benchmark {
 		this.constraints.forEach(constraint -> designSpaceExplorer.addTransformationRule(constraint.difference.getTransformationRule()));
 		this.constraints.forEach(constraint -> designSpaceExplorer.addGlobalConstraint(constraint.difference.getGlobalConstraint()));
 		this.constraints.forEach(constraint -> designSpaceExplorer.addObjective(Objectives
-			.createTrajcetoryCostObjective("[LOWER BOUND] " + constraint.difference.getName())
+			.createTrajectoryCostObjective("[LOWER BOUND] " + constraint.difference.getName())
 			.withRuleCost(constraint.difference.getTransformationRule(), 1.0)
 			.withHardConstraintOnFitness(constraint.lowerBound, Comparators.HIGHER_IS_BETTER)));
 		this.constraints.forEach(constraint -> designSpaceExplorer.addObjective(Objectives
-			.createTrajcetoryCostObjective("[UPPER BOUND] " + constraint.difference.getName())
+			.createTrajectoryCostObjective("[UPPER BOUND] " + constraint.difference.getName())
 			.withRuleCost(constraint.difference.getTransformationRule(), 1.0)
 			.withHardConstraintOnFitness(constraint.upperBound, Comparators.LOWER_IS_BETTER)));
 		designSpaceExplorer.addObjective(Objectives.createDepthHardObjective().withMinDepth(1));

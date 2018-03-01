@@ -7,14 +7,13 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: se.mdh.idt.benji.benchmark.api,
- se.mdh.idt.benji.difference.api,
- se.mdh.idt.benji.trace,
- se.mdh.idt.benji.trace.api,
- se.mdh.idt.benji.trace.impl,
- se.mdh.idt.benji.trace.util
+  se.mdh.idt.benji.difference.api,
+  se.mdh.idt.benji.trace,
+  se.mdh.idt.benji.trace.api,
+  se.mdh.idt.benji.trace.impl,
+  se.mdh.idt.benji.trace.util
 Require-Bundle: org.eclipse.viatra.query.runtime.base.itc,
   org.eclipse.emf.ecore.change,
-  org.eclipse.viatra.dse,
   org.eclipse.viatra.transformation.evm,
   org.eclipse.viatra.transformation.runtime.emf,
   org.eclipse.viatra.query.runtime,
@@ -22,7 +21,8 @@ Require-Bundle: org.eclipse.viatra.query.runtime.base.itc,
   org.eclipse.emf.ecore.xcore.lib,
   org.eclipse.xtext.xbase.lib,
   org.eclipse.emf.ecore;visibility:=reexport,
-  org.eclipse.core.runtime
+  org.eclipse.core.runtime,
+  org.eclipse.viatra.dse;bundle-version="0.20.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.apache.log4j
