@@ -72,8 +72,9 @@ public class TraceBuilder {
 				@Override
 				protected void setTarget(EObject target) {
 					super.setTarget(target);
-					if (!target.eAdapters().stream().anyMatch(eAdapter -> eAdapter instanceof TraceAdapter)) 
-						target.eAdapters().add(new TraceAdapter(resourceSet, target)); 
+					if (!target.eAdapters().stream().anyMatch(eAdapter -> eAdapter instanceof TraceAdapter)) {
+						target.eAdapters().add(new TraceAdapter(resourceSet, target));
+					} 
 				}
 			};
 			target.eAdapters().add(eContentAdapter); 

@@ -3,11 +3,15 @@ package se.mdh.idt.benji.benchmark.api;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
@@ -61,12 +65,12 @@ public class Benchmark {
 	}
 	
 	// benchmark - generate
-	public void generate(int instances, String output) throws ViatraQueryException, IOException {
+	public void generate(int instances, String output) throws ViatraQueryException, IOException, InterruptedException {
 		DesignSpaceExplorer designSpaceExplorer = new DesignSpaceExplorer();
 		designSpaceExplorer.setMaxNumberOfThreads(1);
 		IStateCoderFactory stateCoderFactory = new BenchmarkStateCoderFactory();
 		designSpaceExplorer.setStateCoderFactory(stateCoderFactory);
-		designSpaceExplorer.setInitialModel(this.context);
+		designSpaceExplorer.setInitialModel(this.context, false);
 		this.metamodels.forEach(metamodel -> designSpaceExplorer.addMetaModelPackage(metamodel)); 
 		this.constraints.forEach(constraint -> designSpaceExplorer.addTransformationRule(constraint.difference.getTransformationRule()));
 		this.constraints.forEach(constraint -> designSpaceExplorer.addGlobalConstraint(constraint.difference.getGlobalConstraint()));
@@ -89,12 +93,15 @@ public class Benchmark {
 		for (Solution solution : solutions) {
 			logger.info(solution.getStateCode());
 			SolutionTrajectory solutionTrajectory = solution.getShortestTrajectory(); 
+			UUID solutionTrajectoryId = UUID.randomUUID();
+			Map<EObject, URI> eObjectToProxyURIMap = new HashMap<EObject, URI>();
 			ChangeRecorder changeRecorder = new ChangeRecorder();
+			changeRecorder.setEObjectToProxyURIMap(eObjectToProxyURIMap);
 			changeRecorder.beginRecording(this.models);
 			solutionTrajectory.doTransformationUndoable(this.context);
 			ChangeDescription changeDescription = changeRecorder.endRecording();
-			changeDescription.applyAndReverse();
-			UUID solutionTrajectoryId = UUID.randomUUID();
+			changeDescription.copyAndReverse(eObjectToProxyURIMap);
+			logger.info(changeDescription.getObjectsToDetach());
 			EMFHelper.saveModel(changeDescription, output + File.separator + solutionTrajectoryId + File.separator + "Delta.xmi");
 			changeDescription.applyAndReverse();
 			Set<String> changedModelURIs = changeDescription.getObjectChanges().stream()
@@ -107,7 +114,7 @@ public class Benchmark {
 				.filter(model -> changedModelURIs.contains(model.getURI().toString()))
 				.collect(Collectors.toSet()); 
 			for (Resource model : changedModels) {
-				Resource clonedResource = (Resource)EMFHelper.clone(model); 
+				Resource clonedResource = (Resource) EMFHelper.clone(model); 
 				EMFHelper.saveModel(clonedResource, output + File.separator + solutionTrajectoryId + File.separator + model.getURI().lastSegment());
 			}
 			solutionTrajectory.undoTransformation();
