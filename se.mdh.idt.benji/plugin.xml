@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?><!--
+--><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <!-- @generated Trace -->
+    <package class="se.mdh.idt.benji.trace.TracePackage" genModel="model/Trace.xcore" uri="http://www.mdh.se/idt/benji/trace/Trace"/>
+  </extension>
+  <extension point="org.eclipse.viatra.query.runtime.base.wellbehaving.derived.features">
+    <wellbehaving-derived-feature classifier-name="EReference" feature-name="eReferenceType" package-nsUri="http://www.eclipse.org/emf/2002/Ecore"/>
+  </extension>
+  <extension id="se.mdh.idt.benji.trace.api.TracePatterns" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:se.mdh.idt.benji.trace.api.TracePatterns" id="se.mdh.idt.benji.trace.api.TracePatterns">
+      <query-specification fqn="se.mdh.idt.benji.trace.api.initial"/>
+      <query-specification fqn="se.mdh.idt.benji.trace.api.current"/>
+      <query-specification fqn="se.mdh.idt.benji.trace.api.created"/>
+      <query-specification fqn="se.mdh.idt.benji.trace.api.deleted"/>
+      <query-specification fqn="se.mdh.idt.benji.trace.api.preserved"/>
+    </group>
+  </extension>
+</plugin>
