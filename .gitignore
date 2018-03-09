@@ -1,3 +1,5 @@
+/bin
+
 # Compiled class file
 *.class
 
@@ -24,5 +26,3 @@ hs_err_pid*
 *._trace
 
 *.xtendbin
-
-/bin
