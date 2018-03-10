@@ -34,8 +34,8 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PVisibility;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuple;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuples;
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
-import se.mdh.idt.benji.trace.api.Current;
-import se.mdh.idt.benji.trace.api.Initial;
+import se.mdh.idt.benji.trace.api.internal.Current;
+import se.mdh.idt.benji.trace.api.internal.Initial;
 
 /**
  * A pattern-specific query specification that can instantiate Matcher in a type-safe way.
@@ -220,7 +220,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
    * <code><pre>
    * // trace link - created element
    * pattern created (target : EObject) = {
-   * 	neg find initial (traceLink, _);  
+   * 	neg find initial (traceLink, _source);  
    * 	find current (traceLink, target);
    * }
    * </pre></code>
@@ -495,13 +495,13 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
           PBody body = new PBody(this);
           PVariable var_target = body.getOrCreateVariableByName("target");
           PVariable var_traceLink = body.getOrCreateVariableByName("traceLink");
-          PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
+          PVariable var__source = body.getOrCreateVariableByName("_source");
           new TypeConstraint(body, Tuples.flatTupleOf(var_target), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_target, parameter_pTarget)
           ));
-          // 	neg find initial (traceLink, _)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_traceLink, var___0_), Initial.instance().getInternalQueryRepresentation());
+          // 	neg find initial (traceLink, _source)
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_traceLink, var__source), Initial.instance().getInternalQueryRepresentation());
           //   	find current (traceLink, target)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_traceLink, var_target), Current.instance().getInternalQueryRepresentation());
           bodies.add(body);

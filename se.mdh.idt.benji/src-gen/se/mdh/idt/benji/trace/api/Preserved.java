@@ -33,8 +33,8 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PVisibility;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuple;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuples;
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
-import se.mdh.idt.benji.trace.api.Current;
-import se.mdh.idt.benji.trace.api.Initial;
+import se.mdh.idt.benji.trace.api.internal.Current;
+import se.mdh.idt.benji.trace.api.internal.Initial;
 
 /**
  * A pattern-specific query specification that can instantiate Matcher in a type-safe way.
