@@ -130,4 +130,22 @@ public interface TraceLink extends EObject {
 	 */
 	void setIdentifier(String value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='&lt;%org.eclipse.emf.ecore.EObject%&gt; _source = this.getSource();\nreturn ((T) _source);'"
+	 * @generated
+	 */
+	<T extends EObject> T source();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='&lt;%org.eclipse.emf.ecore.EObject%&gt; _target = this.getTarget();\nreturn ((T) _target);'"
+	 * @generated
+	 */
+	<T extends EObject> T target();
+
 } // TraceLink

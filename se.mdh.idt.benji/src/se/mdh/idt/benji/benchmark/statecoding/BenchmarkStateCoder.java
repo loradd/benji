@@ -46,7 +46,55 @@ public class BenchmarkStateCoder implements IStateCoder {
 		return createDescription(traceModel); 
 	}
 	
-	public String createDescription(TraceModel traceModel) {
+	// activation code
+	public class BenchmarkActivationCode implements Comparable<BenchmarkActivationCode> {
+		
+		private final IPatternMatch match; 
+		private final String matchDescription;  
+		
+		public BenchmarkActivationCode(IPatternMatch match) {
+			this.match = match;
+			this.matchDescription = createDescription(match); 
+		} 
+		
+		public IPatternMatch getMatch() {
+			return this.match; 
+		}
+		
+		@Override
+		public String toString() {
+			return this.matchDescription;  
+	    }
+		
+		@Override
+		public boolean equals(Object obj) {
+			return this.toString().equals(obj.toString()); 
+		}
+		
+		@Override
+		public int compareTo(BenchmarkActivationCode activationCode) {
+			return this.toString().compareTo(activationCode.toString()); 
+		}
+		
+	}
+	
+	// create description from pattern match
+	private static String createDescription(IPatternMatch match) {
+		String patternName = match.specification().getFullyQualifiedName(); 
+		List<String> parameterNames = match.parameterNames(); 
+		List<Object> parameterValues = parameterNames.stream()
+			.map(parameterName -> match.get(parameterName))
+			.collect(Collectors.toList()); 
+		List<String> parameterDescriptions = parameterValues.stream()
+			.map(parameterValue -> parameterValue instanceof TraceLink ? createDescription(((TraceLink)parameterValue).getTarget()) : parameterValue.toString())
+			.collect(Collectors.toList()); 
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(patternName + "[" + String.join("|", parameterDescriptions) + "]"); 
+		return stringBuilder.toString().intern();		
+	}
+	
+	// create description from trace model
+	private static String createDescription(TraceModel traceModel) {
 		StringBuilder traceModelDescription = new StringBuilder();
 		List<TraceLink> traceLinks = traceModel.getTraceLinks(); 
 		List<String> traceLinkDescriptions = traceLinks.stream()
@@ -58,7 +106,8 @@ public class BenchmarkStateCoder implements IStateCoder {
 		return traceModelDescription.toString(); 
 	}
 	
-	public String createDescription(TraceLink traceLink) {
+	// create description from trace link
+	private static String createDescription(TraceLink traceLink) {
 		StringBuilder traceLinkDescription = new StringBuilder();
 		EObject target = traceLink.getTarget(); 
 		String targetDescription = createDescription(target); 
@@ -66,7 +115,8 @@ public class BenchmarkStateCoder implements IStateCoder {
 		return traceLinkDescription.toString(); 
 	}
 	
-	public String createDescription(EObject eObject) {
+	// create description from eObject
+	private static String createDescription(EObject eObject) {
 		StringBuilder eObjectDescription = new StringBuilder();
 		String eObjectSignature = createSignature(eObject); 
 		eObjectDescription.append(eObjectSignature); 
@@ -81,13 +131,14 @@ public class BenchmarkStateCoder implements IStateCoder {
 		return eObjectDescription.toString();  
 	}
 	
-	@SuppressWarnings("unchecked")
-	public String createDescription(EObject eObject, EReference eReference) {
+	// create description from eObject.eReference
+	private static String createDescription(EObject eObject, EReference eReference) {
 		StringBuilder eReferenceDescription = new StringBuilder();
 		String eReferenceName = eReference.getName(); 
 		eReferenceDescription.append(eReferenceName); 
 		eReferenceDescription.append(":["); 
 		if (eReference.isMany()) {
+			@SuppressWarnings("unchecked")
 			List<EObject> eReferenceValues = (EList<EObject>)eObject.eGet(eReference);
 			List<String> eReferenceValueSignatures = eReferenceValues.stream()
 				.map(eReferenceValue -> createSignature(eReferenceValue))
@@ -102,13 +153,14 @@ public class BenchmarkStateCoder implements IStateCoder {
 		return eReferenceDescription.toString(); 
 	}
 	
-	@SuppressWarnings("unchecked")
-	public String createDescription(EObject eObject, EAttribute eAttribute) {
+	// create description from eObject.eAttribute
+	private static String createDescription(EObject eObject, EAttribute eAttribute) {
 		StringBuilder eAttributeDescription = new StringBuilder();
 		String eAttributeName = eAttribute.getName(); 
 		eAttributeDescription.append(eAttributeName); 
 		eAttributeDescription.append(":["); 
 		if (eAttribute.isMany()) {
+			@SuppressWarnings("unchecked")
 			List<Object> eAttributeValues = (EList<Object>) eObject.eGet(eAttribute); 
 			List<String> eAttributeValuesToString = eAttributeValues.stream()
 				.map(eAttributeValue -> eAttributeValue.toString())
@@ -123,7 +175,8 @@ public class BenchmarkStateCoder implements IStateCoder {
 		return eAttributeDescription.toString(); 
 	}
 	
-	public String createSignature(EObject eObject) {
+	// create signature from eObject
+	private static String createSignature(EObject eObject) {
 		StringBuilder eObjectSignature = new StringBuilder();
 		String eClassName = eObject.eClass().getName(); 
 		eObjectSignature.append(eClassName); 
@@ -136,6 +189,6 @@ public class BenchmarkStateCoder implements IStateCoder {
 		eObjectSignature.append(String.join(",", eAttributeDescriptions)); 
 		eObjectSignature.append("]"); 
 		return eObjectSignature.toString(); 
-	}
-		
+	}	
+	
 }

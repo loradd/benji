@@ -4,6 +4,7 @@ package se.mdh.idt.benji.trace;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -150,13 +151,31 @@ public interface TracePackage extends EPackage {
 	int TRACE_LINK_FEATURE_COUNT = 4;
 
 	/**
+	 * The operation id for the '<em>Source</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRACE_LINK___SOURCE = 0;
+
+	/**
+	 * The operation id for the '<em>Target</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRACE_LINK___TARGET = 1;
+
+	/**
 	 * The number of operations of the '<em>Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_LINK_OPERATION_COUNT = 0;
+	int TRACE_LINK_OPERATION_COUNT = 2;
 
 
 	/**
@@ -233,6 +252,26 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTraceLink_Identifier();
+
+	/**
+	 * Returns the meta object for the '{@link se.mdh.idt.benji.trace.TraceLink#source() <em>Source</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Source</em>' operation.
+	 * @see se.mdh.idt.benji.trace.TraceLink#source()
+	 * @generated
+	 */
+	EOperation getTraceLink__Source();
+
+	/**
+	 * Returns the meta object for the '{@link se.mdh.idt.benji.trace.TraceLink#target() <em>Target</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Target</em>' operation.
+	 * @see se.mdh.idt.benji.trace.TraceLink#target()
+	 * @generated
+	 */
+	EOperation getTraceLink__Target();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -316,6 +355,22 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TRACE_LINK__IDENTIFIER = eINSTANCE.getTraceLink_Identifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TRACE_LINK___SOURCE = eINSTANCE.getTraceLink__Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TRACE_LINK___TARGET = eINSTANCE.getTraceLink__Target();
 
 	}
 

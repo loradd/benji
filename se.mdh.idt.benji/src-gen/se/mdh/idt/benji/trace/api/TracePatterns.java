@@ -6,8 +6,9 @@ package se.mdh.idt.benji.trace.api;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 import se.mdh.idt.benji.trace.api.Created;
+import se.mdh.idt.benji.trace.api.Current;
 import se.mdh.idt.benji.trace.api.Deleted;
-import se.mdh.idt.benji.trace.api.Existing;
+import se.mdh.idt.benji.trace.api.Initial;
 import se.mdh.idt.benji.trace.api.Preserved;
 
 /**
@@ -18,10 +19,11 @@ import se.mdh.idt.benji.trace.api.Preserved;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package se.mdh.idt.benji.trace.api, the group contains the definition of the following patterns: <ul>
- * <li>existing</li>
+ * <li>initial</li>
+ * <li>current</li>
+ * <li>preserved</li>
  * <li>created</li>
  * <li>deleted</li>
- * <li>preserved</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -46,18 +48,35 @@ public final class TracePatterns extends BaseGeneratedPatternGroup {
   private static TracePatterns INSTANCE;
   
   private TracePatterns() {
-    querySpecifications.add(Existing.instance());
+    querySpecifications.add(Initial.instance());
+    querySpecifications.add(Current.instance());
+    querySpecifications.add(Preserved.instance());
     querySpecifications.add(Created.instance());
     querySpecifications.add(Deleted.instance());
-    querySpecifications.add(Preserved.instance());
   }
   
-  public Existing getExisting() {
-    return Existing.instance();
+  public Initial getInitial() {
+    return Initial.instance();
   }
   
-  public Existing.Matcher getExisting(final ViatraQueryEngine engine) {
-    return Existing.Matcher.on(engine);
+  public Initial.Matcher getInitial(final ViatraQueryEngine engine) {
+    return Initial.Matcher.on(engine);
+  }
+  
+  public Current getCurrent() {
+    return Current.instance();
+  }
+  
+  public Current.Matcher getCurrent(final ViatraQueryEngine engine) {
+    return Current.Matcher.on(engine);
+  }
+  
+  public Preserved getPreserved() {
+    return Preserved.instance();
+  }
+  
+  public Preserved.Matcher getPreserved(final ViatraQueryEngine engine) {
+    return Preserved.Matcher.on(engine);
   }
   
   public Created getCreated() {
@@ -74,13 +93,5 @@ public final class TracePatterns extends BaseGeneratedPatternGroup {
   
   public Deleted.Matcher getDeleted(final ViatraQueryEngine engine) {
     return Deleted.Matcher.on(engine);
-  }
-  
-  public Preserved getPreserved() {
-    return Preserved.instance();
-  }
-  
-  public Preserved.Matcher getPreserved(final ViatraQueryEngine engine) {
-    return Preserved.Matcher.on(engine);
   }
 }

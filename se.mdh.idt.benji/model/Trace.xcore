@@ -20,4 +20,8 @@ class TraceLink {
 	refers EObject[1..1] target
 	// attribute - identifier
 	String[1..1] identifier 
+	// operations - source
+	op <T extends EObject> T source () { return this.getSource() as T }
+	// operations - target
+	op <T extends EObject> T target () { return this.getTarget() as T }
 }

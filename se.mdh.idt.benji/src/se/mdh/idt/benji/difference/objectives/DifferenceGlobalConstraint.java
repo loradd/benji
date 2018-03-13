@@ -12,7 +12,7 @@ import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
-import se.mdh.idt.benji.benchmark.statecoding.BenchmarkActivationCode;
+import se.mdh.idt.benji.benchmark.statecoding.BenchmarkStateCoder.BenchmarkActivationCode;
 
 /**
  * @author Lorenzo Addazi 

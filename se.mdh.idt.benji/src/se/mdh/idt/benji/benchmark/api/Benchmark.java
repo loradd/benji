@@ -70,7 +70,7 @@ public class Benchmark {
 		designSpaceExplorer.setMaxNumberOfThreads(1);
 		IStateCoderFactory stateCoderFactory = new BenchmarkStateCoderFactory();
 		designSpaceExplorer.setStateCoderFactory(stateCoderFactory);
-		designSpaceExplorer.setInitialModel(this.context, false);
+		designSpaceExplorer.setInitialModelUncloned(this.context);
 		this.metamodels.forEach(metamodel -> designSpaceExplorer.addMetaModelPackage(metamodel)); 
 		this.constraints.forEach(constraint -> designSpaceExplorer.addTransformationRule(constraint.difference.getTransformationRule()));
 		this.constraints.forEach(constraint -> designSpaceExplorer.addGlobalConstraint(constraint.difference.getGlobalConstraint()));
@@ -91,7 +91,7 @@ public class Benchmark {
 		logger.info(designSpaceExplorer.toStringSolutions());
 		Collection<Solution> solutions = designSpaceExplorer.getSolutions();
 		for (Solution solution : solutions) {
-			logger.info(solution.getStateCode());
+			// logger.info(solution.getStateCode());
 			SolutionTrajectory solutionTrajectory = solution.getShortestTrajectory(); 
 			UUID solutionTrajectoryId = UUID.randomUUID();
 			Map<EObject, URI> eObjectToProxyURIMap = new HashMap<EObject, URI>();
@@ -101,9 +101,7 @@ public class Benchmark {
 			solutionTrajectory.doTransformationUndoable(this.context);
 			ChangeDescription changeDescription = changeRecorder.endRecording();
 			changeDescription.copyAndReverse(eObjectToProxyURIMap);
-			logger.info(changeDescription.getObjectsToDetach());
 			EMFHelper.saveModel(changeDescription, output + File.separator + solutionTrajectoryId + File.separator + "Delta.xmi");
-			changeDescription.applyAndReverse();
 			Set<String> changedModelURIs = changeDescription.getObjectChanges().stream()
 				.map(objectChange -> objectChange.getKey().eResource().getURI().toString())
 				.collect(Collectors.toSet());
@@ -113,12 +111,13 @@ public class Benchmark {
 			Collection<Resource> changedModels = this.models.stream()
 				.filter(model -> changedModelURIs.contains(model.getURI().toString()))
 				.collect(Collectors.toSet()); 
-			for (Resource model : changedModels) {
-				Resource clonedResource = (Resource) EMFHelper.clone(model); 
-				EMFHelper.saveModel(clonedResource, output + File.separator + solutionTrajectoryId + File.separator + model.getURI().lastSegment());
+			for (Resource changedModel : changedModels) {
+				Resource clonedResource = (Resource) EMFHelper.clone(changedModel); 
+				EMFHelper.saveModel(clonedResource, output + File.separator + solutionTrajectoryId + File.separator + changedModel.getURI().lastSegment());
 			}
 			solutionTrajectory.undoTransformation();
 		}
+		logger.info(solutions.size()); 
 	}
 	
 	// becnhmark - constraint

@@ -34,8 +34,9 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PVisibility;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuple;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuples;
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
-import se.mdh.idt.benji.trace.api.internal.Current;
-import se.mdh.idt.benji.trace.api.internal.Initial;
+import se.mdh.idt.benji.trace.TraceLink;
+import se.mdh.idt.benji.trace.api.Current;
+import se.mdh.idt.benji.trace.api.Initial;
 
 /**
  * A pattern-specific query specification that can instantiate Matcher in a type-safe way.
@@ -59,37 +60,54 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private EObject fSource;
+    private TraceLink fTraceLink;
     
-    private static List<String> parameterNames = makeImmutableList("source");
+    private EObject fInitial_element;
     
-    private Match(final EObject pSource) {
-      this.fSource = pSource;
+    private static List<String> parameterNames = makeImmutableList("traceLink", "initial_element");
+    
+    private Match(final TraceLink pTraceLink, final EObject pInitial_element) {
+      this.fTraceLink = pTraceLink;
+      this.fInitial_element = pInitial_element;
     }
     
     @Override
     public Object get(final String parameterName) {
-      if ("source".equals(parameterName)) return this.fSource;
+      if ("traceLink".equals(parameterName)) return this.fTraceLink;
+      if ("initial_element".equals(parameterName)) return this.fInitial_element;
       return null;
     }
     
-    public EObject getSource() {
-      return this.fSource;
+    public TraceLink getTraceLink() {
+      return this.fTraceLink;
+    }
+    
+    public EObject getInitial_element() {
+      return this.fInitial_element;
     }
     
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("source".equals(parameterName) ) {
-          this.fSource = (EObject) newValue;
+      if ("traceLink".equals(parameterName) ) {
+          this.fTraceLink = (TraceLink) newValue;
+          return true;
+      }
+      if ("initial_element".equals(parameterName) ) {
+          this.fInitial_element = (EObject) newValue;
           return true;
       }
       return false;
     }
     
-    public void setSource(final EObject pSource) {
+    public void setTraceLink(final TraceLink pTraceLink) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fSource = pSource;
+      this.fTraceLink = pTraceLink;
+    }
+    
+    public void setInitial_element(final EObject pInitial_element) {
+      if (!isMutable()) throw new java.lang.UnsupportedOperationException();
+      this.fInitial_element = pInitial_element;
     }
     
     @Override
@@ -104,24 +122,25 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fSource};
+      return new Object[]{fTraceLink, fInitial_element};
     }
     
     @Override
     public Deleted.Match toImmutable() {
-      return isMutable() ? newMatch(fSource) : this;
+      return isMutable() ? newMatch(fTraceLink, fInitial_element) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"source\"=" + prettyPrintValue(fSource));
+      result.append("\"traceLink\"=" + prettyPrintValue(fTraceLink) + ", ");
+      result.append("\"initial_element\"=" + prettyPrintValue(fInitial_element));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash (fSource);
+      return Objects.hash (fTraceLink, fInitial_element);
     }
     
     @Override
@@ -133,7 +152,7 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
       }
       if ((obj instanceof Deleted.Match)) {
           Deleted.Match other = (Deleted.Match) obj;
-          return Objects.equals(fSource, other.fSource);
+          return Objects.equals(fTraceLink, other.fTraceLink) && Objects.equals(fInitial_element, other.fInitial_element);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -157,36 +176,38 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
      * 
      */
     public static Deleted.Match newEmptyMatch() {
-      return new Mutable(null);
+      return new Mutable(null, null);
     }
     
     /**
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pSource the fixed value of pattern parameter source, or null if not bound.
+     * @param pTraceLink the fixed value of pattern parameter traceLink, or null if not bound.
+     * @param pInitial_element the fixed value of pattern parameter initial_element, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Deleted.Match newMutableMatch(final EObject pSource) {
-      return new Mutable(pSource);
+    public static Deleted.Match newMutableMatch(final TraceLink pTraceLink, final EObject pInitial_element) {
+      return new Mutable(pTraceLink, pInitial_element);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pSource the fixed value of pattern parameter source, or null if not bound.
+     * @param pTraceLink the fixed value of pattern parameter traceLink, or null if not bound.
+     * @param pInitial_element the fixed value of pattern parameter initial_element, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static Deleted.Match newMatch(final EObject pSource) {
-      return new Immutable(pSource);
+    public static Deleted.Match newMatch(final TraceLink pTraceLink, final EObject pInitial_element) {
+      return new Immutable(pTraceLink, pInitial_element);
     }
     
     private static final class Mutable extends Deleted.Match {
-      Mutable(final EObject pSource) {
-        super(pSource);
+      Mutable(final TraceLink pTraceLink, final EObject pInitial_element) {
+        super(pTraceLink, pInitial_element);
       }
       
       @Override
@@ -196,8 +217,8 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
     }
     
     private static final class Immutable extends Deleted.Match {
-      Immutable(final EObject pSource) {
-        super(pSource);
+      Immutable(final TraceLink pTraceLink, final EObject pInitial_element) {
+        super(pTraceLink, pInitial_element);
       }
       
       @Override
@@ -219,9 +240,9 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
    * <p>Original source:
    * <code><pre>
    * // trace link - deleted element
-   * pattern deleted (source : EObject) = {
-   * 	find initial (traceLink, source); 
-   * 	neg find current (traceLink, _target); 
+   * pattern deleted (traceLink : TraceLink, initial_element : EObject) {
+   * 	find initial (traceLink, initial_element); 
+   * 	neg find current (traceLink, _current_element);
    * }
    * </pre></code>
    * 
@@ -257,7 +278,9 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
       return new Matcher();
     }
     
-    private final static int POSITION_SOURCE = 0;
+    private final static int POSITION_TRACELINK = 0;
+    
+    private final static int POSITION_INITIAL_ELEMENT = 1;
     
     private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Deleted.Matcher.class);
     
@@ -275,94 +298,162 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pSource the fixed value of pattern parameter source, or null if not bound.
+     * @param pTraceLink the fixed value of pattern parameter traceLink, or null if not bound.
+     * @param pInitial_element the fixed value of pattern parameter initial_element, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Deleted.Match> getAllMatches(final EObject pSource) {
-      return rawGetAllMatches(new Object[]{pSource});
+    public Collection<Deleted.Match> getAllMatches(final TraceLink pTraceLink, final EObject pInitial_element) {
+      return rawGetAllMatches(new Object[]{pTraceLink, pInitial_element});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pSource the fixed value of pattern parameter source, or null if not bound.
+     * @param pTraceLink the fixed value of pattern parameter traceLink, or null if not bound.
+     * @param pInitial_element the fixed value of pattern parameter initial_element, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Deleted.Match getOneArbitraryMatch(final EObject pSource) {
-      return rawGetOneArbitraryMatch(new Object[]{pSource});
+    public Deleted.Match getOneArbitraryMatch(final TraceLink pTraceLink, final EObject pInitial_element) {
+      return rawGetOneArbitraryMatch(new Object[]{pTraceLink, pInitial_element});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pSource the fixed value of pattern parameter source, or null if not bound.
+     * @param pTraceLink the fixed value of pattern parameter traceLink, or null if not bound.
+     * @param pInitial_element the fixed value of pattern parameter initial_element, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final EObject pSource) {
-      return rawHasMatch(new Object[]{pSource});
+    public boolean hasMatch(final TraceLink pTraceLink, final EObject pInitial_element) {
+      return rawHasMatch(new Object[]{pTraceLink, pInitial_element});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pSource the fixed value of pattern parameter source, or null if not bound.
+     * @param pTraceLink the fixed value of pattern parameter traceLink, or null if not bound.
+     * @param pInitial_element the fixed value of pattern parameter initial_element, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final EObject pSource) {
-      return rawCountMatches(new Object[]{pSource});
+    public int countMatches(final TraceLink pTraceLink, final EObject pInitial_element) {
+      return rawCountMatches(new Object[]{pTraceLink, pInitial_element});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pSource the fixed value of pattern parameter source, or null if not bound.
+     * @param pTraceLink the fixed value of pattern parameter traceLink, or null if not bound.
+     * @param pInitial_element the fixed value of pattern parameter initial_element, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final EObject pSource, final IMatchProcessor<? super Deleted.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pSource}, processor);
+    public boolean forOneArbitraryMatch(final TraceLink pTraceLink, final EObject pInitial_element, final IMatchProcessor<? super Deleted.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pTraceLink, pInitial_element}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pSource the fixed value of pattern parameter source, or null if not bound.
+     * @param pTraceLink the fixed value of pattern parameter traceLink, or null if not bound.
+     * @param pInitial_element the fixed value of pattern parameter initial_element, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public Deleted.Match newMatch(final EObject pSource) {
-      return Deleted.Match.newMatch(pSource);
+    public Deleted.Match newMatch(final TraceLink pTraceLink, final EObject pInitial_element) {
+      return Deleted.Match.newMatch(pTraceLink, pInitial_element);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for source.
+     * Retrieve the set of values that occur in matches for traceLink.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Set<EObject> rawAccumulateAllValuesOfsource(final Object[] parameters) {
-      Set<EObject> results = new HashSet<EObject>();
-      rawAccumulateAllValues(POSITION_SOURCE, parameters, results);
+    protected Set<TraceLink> rawAccumulateAllValuesOftraceLink(final Object[] parameters) {
+      Set<TraceLink> results = new HashSet<TraceLink>();
+      rawAccumulateAllValues(POSITION_TRACELINK, parameters, results);
       return results;
     }
     
     /**
-     * Retrieve the set of values that occur in matches for source.
+     * Retrieve the set of values that occur in matches for traceLink.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<EObject> getAllValuesOfsource() {
-      return rawAccumulateAllValuesOfsource(emptyArray());
+    public Set<TraceLink> getAllValuesOftraceLink() {
+      return rawAccumulateAllValuesOftraceLink(emptyArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for traceLink.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<TraceLink> getAllValuesOftraceLink(final Deleted.Match partialMatch) {
+      return rawAccumulateAllValuesOftraceLink(partialMatch.toArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for traceLink.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<TraceLink> getAllValuesOftraceLink(final EObject pInitial_element) {
+      return rawAccumulateAllValuesOftraceLink(new Object[]{
+      null, 
+      pInitial_element
+      });
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for initial_element.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    protected Set<EObject> rawAccumulateAllValuesOfinitial_element(final Object[] parameters) {
+      Set<EObject> results = new HashSet<EObject>();
+      rawAccumulateAllValues(POSITION_INITIAL_ELEMENT, parameters, results);
+      return results;
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for initial_element.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<EObject> getAllValuesOfinitial_element() {
+      return rawAccumulateAllValuesOfinitial_element(emptyArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for initial_element.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<EObject> getAllValuesOfinitial_element(final Deleted.Match partialMatch) {
+      return rawAccumulateAllValuesOfinitial_element(partialMatch.toArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for initial_element.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Set<EObject> getAllValuesOfinitial_element(final TraceLink pTraceLink) {
+      return rawAccumulateAllValuesOfinitial_element(new Object[]{
+      pTraceLink, 
+      null
+      });
     }
     
     @Override
     protected Deleted.Match tupleToMatch(final Tuple t) {
       try {
-          return Deleted.Match.newMatch((EObject) t.get(POSITION_SOURCE));
+          return Deleted.Match.newMatch((TraceLink) t.get(POSITION_TRACELINK), (EObject) t.get(POSITION_INITIAL_ELEMENT));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -372,7 +463,7 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
     @Override
     protected Deleted.Match arrayToMatch(final Object[] match) {
       try {
-          return Deleted.Match.newMatch((EObject) match[POSITION_SOURCE]);
+          return Deleted.Match.newMatch((TraceLink) match[POSITION_TRACELINK], (EObject) match[POSITION_INITIAL_ELEMENT]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -382,7 +473,7 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
     @Override
     protected Deleted.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Deleted.Match.newMutableMatch((EObject) match[POSITION_SOURCE]);
+          return Deleted.Match.newMutableMatch((TraceLink) match[POSITION_TRACELINK], (EObject) match[POSITION_INITIAL_ELEMENT]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -433,7 +524,7 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
   
   @Override
   public Deleted.Match newMatch(final Object... parameters) {
-    return Deleted.Match.newMatch((org.eclipse.emf.ecore.EObject) parameters[0]);
+    return Deleted.Match.newMatch((se.mdh.idt.benji.trace.TraceLink) parameters[0], (org.eclipse.emf.ecore.EObject) parameters[1]);
   }
   
   /**
@@ -465,9 +556,11 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private final static Deleted.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_pSource = new PParameter("source", "org.eclipse.emf.ecore.EObject", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EObject")), PParameterDirection.INOUT);
+    private final PParameter parameter_pTraceLink = new PParameter("traceLink", "se.mdh.idt.benji.trace.TraceLink", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.mdh.se/idt/benji/trace/Trace", "TraceLink")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_pSource);
+    private final PParameter parameter_pInitial_element = new PParameter("initial_element", "org.eclipse.emf.ecore.EObject", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EObject")), PParameterDirection.INOUT);
+    
+    private final List<PParameter> parameters = Arrays.asList(parameter_pTraceLink, parameter_pInitial_element);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -480,7 +573,7 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("source");
+      return Arrays.asList("traceLink","initial_element");
     }
     
     @Override
@@ -493,17 +586,19 @@ public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Ma
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_source = body.getOrCreateVariableByName("source");
           PVariable var_traceLink = body.getOrCreateVariableByName("traceLink");
-          PVariable var__target = body.getOrCreateVariableByName("_target");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_source), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
+          PVariable var_initial_element = body.getOrCreateVariableByName("initial_element");
+          PVariable var__current_element = body.getOrCreateVariableByName("_current_element");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_traceLink), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.mdh.se/idt/benji/trace/Trace", "TraceLink")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_initial_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_source, parameter_pSource)
+             new ExportedParameter(body, var_traceLink, parameter_pTraceLink),
+             new ExportedParameter(body, var_initial_element, parameter_pInitial_element)
           ));
-          // 	find initial (traceLink, source)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_traceLink, var_source), Initial.instance().getInternalQueryRepresentation());
-          //  	neg find current (traceLink, _target)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_traceLink, var__target), Current.instance().getInternalQueryRepresentation());
+          // 	find initial (traceLink, initial_element)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_traceLink, var_initial_element), Initial.instance().getInternalQueryRepresentation());
+          //  	neg find current (traceLink, _current_element)
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_traceLink, var__current_element), Current.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
       return bodies;

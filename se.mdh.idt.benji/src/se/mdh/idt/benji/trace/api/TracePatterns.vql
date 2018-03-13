@@ -4,37 +4,30 @@ package se.mdh.idt.benji.trace.api
 import 'http://www.eclipse.org/emf/2002/Ecore'
 import 'http://www.mdh.se/idt/benji/trace/Trace'
 
-// trace link - initial element 
-private pattern initial (traceLink : TraceLink, source : EObject) = {
-	TraceLink.source(traceLink, source);
+// trace link - initial element
+pattern initial (traceLink : TraceLink, initial_element : EObject) {
+	TraceLink.source (traceLink, initial_element); 
 }
 
 // trace link - current element
-private pattern current (traceLink : TraceLink, target : EObject) = {
-	TraceLink.target(traceLink, target); 	
+pattern current (traceLink : TraceLink, current_element : EObject) {
+	TraceLink.target (traceLink, current_element); 	
 }
 
-// trace link - existing element
-pattern existing (target : EObject) {
-	find preserved (_source, target); 
-} or {
-	find created (target); 
+// trace link - preserved element 
+pattern preserved (traceLink : TraceLink, initial_element : EObject, current_element : EObject) {
+	find initial (traceLink, initial_element); 
+	find current (traceLink, current_element); 	
 }
 
 // trace link - created element
-pattern created (target : EObject) = {
-	neg find initial (traceLink, _source);  
-	find current (traceLink, target);
+pattern created (traceLink : TraceLink, current_element : EObject) {
+	neg find initial (traceLink, _initial_element); 
+	find current (traceLink, current_element); 
 }
 
 // trace link - deleted element
-pattern deleted (source : EObject) = {
-	find initial (traceLink, source); 
-	neg find current (traceLink, _target); 
-}
-
-// trace link - preserved element
-pattern preserved (source : EObject, target : EObject) = {
-	find initial (traceLink, source); 
-	find current (traceLink, target); 
+pattern deleted (traceLink : TraceLink, initial_element : EObject) {
+	find initial (traceLink, initial_element); 
+	neg find current (traceLink, _current_element);
 }
