@@ -3,6 +3,8 @@ package se.mdh.idt.benji.benchmark.statecoding;
 import static se.mdh.idt.benji.trace.TraceBuilder.TRACE_URI;
 import static se.mdh.idt.benji.trace.TracePackage.Literals.TRACE_MODEL;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 

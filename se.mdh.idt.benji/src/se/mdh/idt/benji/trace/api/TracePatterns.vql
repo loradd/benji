@@ -13,21 +13,3 @@ pattern initial (traceLink : TraceLink, initial_element : EObject) {
 pattern current (traceLink : TraceLink, current_element : EObject) {
 	TraceLink.target (traceLink, current_element); 	
 }
-
-// trace link - preserved element 
-pattern preserved (traceLink : TraceLink, initial_element : EObject, current_element : EObject) {
-	find initial (traceLink, initial_element); 
-	find current (traceLink, current_element); 	
-}
-
-// trace link - created element
-pattern created (traceLink : TraceLink, current_element : EObject) {
-	neg find initial (traceLink, _initial_element); 
-	find current (traceLink, current_element); 
-}
-
-// trace link - deleted element
-pattern deleted (traceLink : TraceLink, initial_element : EObject) {
-	find initial (traceLink, initial_element); 
-	neg find current (traceLink, _current_element);
-}
