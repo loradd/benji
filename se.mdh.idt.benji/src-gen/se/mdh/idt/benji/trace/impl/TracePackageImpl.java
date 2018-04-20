@@ -10,29 +10,34 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import se.mdh.idt.benji.trace.Trace;
 import se.mdh.idt.benji.trace.TraceFactory;
-import se.mdh.idt.benji.trace.TraceLink;
 import se.mdh.idt.benji.trace.TraceModel;
 import se.mdh.idt.benji.trace.TracePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass traceModelEClass = null;
+
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass traceLinkEClass = null;
+	private EClass traceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -42,8 +47,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * factory method {@link #init init()}, which also performs
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see se.mdh.idt.benji.trace.TracePackage#eNS_URI
 	 * @see #init()
@@ -54,7 +59,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -64,8 +70,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * 
 	 * <p>This method is used to initialize {@link TracePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -98,7 +104,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getTraceModel() {
@@ -106,71 +113,80 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTraceModel_TraceLinks() {
+	public EReference getTraceModel_Traces() {
 		return (EReference)traceModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTraceLink() {
-		return traceLinkEClass;
+	public EClass getTrace() {
+		return traceEClass;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTraceLink_TraceModel() {
-		return (EReference)traceLinkEClass.getEStructuralFeatures().get(0);
+	public EReference getTrace_Model() {
+		return (EReference)traceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTraceLink_Source() {
-		return (EReference)traceLinkEClass.getEStructuralFeatures().get(1);
+	public EReference getTrace_Initial() {
+		return (EReference)traceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTraceLink_Target() {
-		return (EReference)traceLinkEClass.getEStructuralFeatures().get(2);
+	public EReference getTrace_Current() {
+		return (EReference)traceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTraceLink_Identifier() {
-		return (EAttribute)traceLinkEClass.getEStructuralFeatures().get(3);
+	public EAttribute getTrace_Identifier() {
+		return (EAttribute)traceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTraceLink__Source() {
-		return traceLinkEClass.getEOperations().get(0);
+	public EOperation getTrace__Initial() {
+		return traceEClass.getEOperations().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTraceLink__Target() {
-		return traceLinkEClass.getEOperations().get(1);
+	public EOperation getTrace__Current() {
+		return traceEClass.getEOperations().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TraceFactory getTraceFactory() {
@@ -178,7 +194,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -186,8 +203,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -196,28 +213,29 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 
 		// Create classes and their features
 		traceModelEClass = createEClass(TRACE_MODEL);
-		createEReference(traceModelEClass, TRACE_MODEL__TRACE_LINKS);
+		createEReference(traceModelEClass, TRACE_MODEL__TRACES);
 
-		traceLinkEClass = createEClass(TRACE_LINK);
-		createEReference(traceLinkEClass, TRACE_LINK__TRACE_MODEL);
-		createEReference(traceLinkEClass, TRACE_LINK__SOURCE);
-		createEReference(traceLinkEClass, TRACE_LINK__TARGET);
-		createEAttribute(traceLinkEClass, TRACE_LINK__IDENTIFIER);
-		createEOperation(traceLinkEClass, TRACE_LINK___SOURCE);
-		createEOperation(traceLinkEClass, TRACE_LINK___TARGET);
+		traceEClass = createEClass(TRACE);
+		createEReference(traceEClass, TRACE__MODEL);
+		createEReference(traceEClass, TRACE__INITIAL);
+		createEReference(traceEClass, TRACE__CURRENT);
+		createEAttribute(traceEClass, TRACE__IDENTIFIER);
+		createEOperation(traceEClass, TRACE___INITIAL);
+		createEOperation(traceEClass, TRACE___CURRENT);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is
-	 * guarded to have no affect on any invocation but its first. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -240,22 +258,22 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(traceModelEClass, TraceModel.class, "TraceModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTraceModel_TraceLinks(), this.getTraceLink(), this.getTraceLink_TraceModel(), "traceLinks", null, 0, -1, TraceModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTraceModel_Traces(), this.getTrace(), this.getTrace_Model(), "traces", null, 0, -1, TraceModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(traceLinkEClass, TraceLink.class, "TraceLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTraceLink_TraceModel(), this.getTraceModel(), this.getTraceModel_TraceLinks(), "traceModel", null, 1, 1, TraceLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTraceLink_Source(), theEcorePackage.getEObject(), null, "source", null, 1, 1, TraceLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTraceLink_Target(), theEcorePackage.getEObject(), null, "target", null, 1, 1, TraceLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTraceLink_Identifier(), theEcorePackage.getEString(), "identifier", null, 1, 1, TraceLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(traceEClass, Trace.class, "Trace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTrace_Model(), this.getTraceModel(), this.getTraceModel_Traces(), "model", null, 1, 1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTrace_Initial(), theEcorePackage.getEObject(), null, "initial", null, 1, 1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTrace_Current(), theEcorePackage.getEObject(), null, "current", null, 1, 1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTrace_Identifier(), theEcorePackage.getEString(), "identifier", null, 1, 1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getTraceLink__Source(), null, "source", 0, 1, !IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getTrace__Initial(), null, "initial", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		ETypeParameter t1 = addETypeParameter(op, "T");
 		EGenericType g1 = createEGenericType(theEcorePackage.getEObject());
 		t1.getEBounds().add(g1);
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
 
-		op = initEOperation(getTraceLink__Target(), null, "target", 0, 1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getTrace__Current(), null, "current", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		t1 = addETypeParameter(op, "T");
 		g1 = createEGenericType(theEcorePackage.getEObject());
 		t1.getEBounds().add(g1);
@@ -266,4 +284,4 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createResource(eNS_URI);
 	}
 
-} // TracePackageImpl
+} //TracePackageImpl

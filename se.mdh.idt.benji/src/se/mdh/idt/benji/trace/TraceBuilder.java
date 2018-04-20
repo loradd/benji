@@ -28,7 +28,7 @@ public class TraceBuilder {
 	// resource set
 	private final ResourceSet resourceSet = new ResourceSetImpl();
 	// target models
-	private final Set<Resource> targets = new HashSet<Resource>(); 
+	private final Set<Resource> editables = new HashSet<Resource>(); 
 	
 	// constructor
 	public TraceBuilder() {
@@ -41,14 +41,14 @@ public class TraceBuilder {
 	public Resource load(String modelPath) {
 		File modelFile = new File(modelPath); 
 		String modelAbsolutePath = modelFile.getAbsolutePath(); 
-		URI targetModelURI = URI.createFileURI(modelAbsolutePath); 
-		Resource targetModelResource = resourceSet.getResource(targetModelURI, true);
-		URI sourceModelURI = targetModelURI.trimFileExtension().appendFileExtension("tmp");
-		Resource sourceModelResource = resourceSet.createResource(sourceModelURI); 
-		Collection<EObject> sourceModelContents = copier.copyAll(targetModelResource.getContents()); 
-		sourceModelResource.getContents().addAll(sourceModelContents);
-		targets.add(targetModelResource); 
-		return targetModelResource; 
+		URI editableModelURI = URI.createFileURI(modelAbsolutePath); 
+		Resource editableModelResource = resourceSet.getResource(editableModelURI, true);
+		URI referenceModelURI = editableModelURI.trimFileExtension().appendFileExtension("tmp");
+		Resource referenceModelResource = resourceSet.createResource(referenceModelURI); 
+		Collection<EObject> referenceModelContents = copier.copyAll(editableModelResource.getContents()); 
+		referenceModelResource.getContents().addAll(referenceModelContents);
+		editables.add(editableModelResource); 
+		return editableModelResource; 
 	}
 	
 	// build
@@ -56,13 +56,13 @@ public class TraceBuilder {
 		this.copier.copyReferences(); 
 		// attach trace adapters
 		for (Entry<EObject, EObject> entry : this.copier.entrySet()) {
-			EObject source = entry.getValue(); 
-			EObject target = entry.getKey(); 
-			target.eAdapters().add(new TraceAdapter(resourceSet, source, target)); 
+			EObject initial = entry.getValue(); 
+			EObject current = entry.getKey(); 
+			current.eAdapters().add(new TraceAdapter(resourceSet, initial, current)); 
 		}
 		// attach trace monitor
 		TraceMonitor traceMonitor = new TraceMonitor(resourceSet); 
-		this.targets.forEach(target -> target.eAdapters().add(traceMonitor));
+		this.editables.forEach(target -> target.eAdapters().add(traceMonitor));
 		return resourceSet; 
 	}
 

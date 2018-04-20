@@ -5,23 +5,24 @@ package se.mdh.idt.benji.trace.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import se.mdh.idt.benji.trace.TraceFactory;
-import se.mdh.idt.benji.trace.TraceLink;
-import se.mdh.idt.benji.trace.TraceModel;
-import se.mdh.idt.benji.trace.TracePackage;
+
+import se.mdh.idt.benji.trace.*;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static TraceFactory init() {
@@ -38,9 +39,9 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TraceFactoryImpl() {
@@ -48,21 +49,23 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case TracePackage.TRACE_MODEL: return createTraceModel();
-			case TracePackage.TRACE_LINK: return createTraceLink();
+			case TracePackage.TRACE: return createTrace();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TraceModel createTraceModel() {
@@ -71,16 +74,18 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TraceLink createTraceLink() {
-		TraceLinkImpl traceLink = new TraceLinkImpl();
-		return traceLink;
+	public Trace createTrace() {
+		TraceImpl trace = new TraceImpl();
+		return trace;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TracePackage getTracePackage() {
@@ -88,7 +93,8 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -97,4 +103,4 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 		return TracePackage.eINSTANCE;
 	}
 
-} // TraceFactoryImpl
+} //TraceFactoryImpl

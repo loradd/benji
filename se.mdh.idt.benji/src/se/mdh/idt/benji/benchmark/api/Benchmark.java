@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.viatra.dse.api.DesignSpaceExplorer;
+import org.eclipse.viatra.dse.api.DesignSpaceExplorer.DseLoggingLevel;
 import org.eclipse.viatra.dse.api.Objectives;
 import org.eclipse.viatra.dse.api.Solution;
 import org.eclipse.viatra.dse.api.SolutionTrajectory;
@@ -67,6 +68,7 @@ public class Benchmark {
 	// benchmark - generate
 	public void generate(int instances, String output) throws ViatraQueryException, IOException, InterruptedException {
 		DesignSpaceExplorer designSpaceExplorer = new DesignSpaceExplorer();
+		DesignSpaceExplorer.turnOnLogging(DseLoggingLevel.VERBOSE_FULL);
 		designSpaceExplorer.setMaxNumberOfThreads(1);
 		IStateCoderFactory stateCoderFactory = new BenchmarkStateCoderFactory();
 		designSpaceExplorer.setStateCoderFactory(stateCoderFactory);

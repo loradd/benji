@@ -16,34 +16,37 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import se.mdh.idt.benji.trace.TraceLink;
+import se.mdh.idt.benji.trace.Trace;
 import se.mdh.idt.benji.trace.TraceModel;
 import se.mdh.idt.benji.trace.TracePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Model</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Model</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link se.mdh.idt.benji.trace.impl.TraceModelImpl#getTraceLinks <em>Trace Links</em>}</li>
+ *   <li>{@link se.mdh.idt.benji.trace.impl.TraceModelImpl#getTraces <em>Traces</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TraceModelImpl extends MinimalEObjectImpl.Container implements TraceModel {
 	/**
-	 * The cached value of the '{@link #getTraceLinks() <em>Trace Links</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getTraceLinks()
+	 * The cached value of the '{@link #getTraces() <em>Traces</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTraces()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TraceLink> traceLinks;
+	protected EList<Trace> traces;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TraceModelImpl() {
@@ -51,7 +54,8 @@ public class TraceModelImpl extends MinimalEObjectImpl.Container implements Trac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,97 +64,104 @@ public class TraceModelImpl extends MinimalEObjectImpl.Container implements Trac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TraceLink> getTraceLinks() {
-		if (traceLinks == null) {
-			traceLinks = new EObjectContainmentWithInverseEList<TraceLink>(TraceLink.class, this, TracePackage.TRACE_MODEL__TRACE_LINKS, TracePackage.TRACE_LINK__TRACE_MODEL);
+	public EList<Trace> getTraces() {
+		if (traces == null) {
+			traces = new EObjectContainmentWithInverseEList<Trace>(Trace.class, this, TracePackage.TRACE_MODEL__TRACES, TracePackage.TRACE__MODEL);
 		}
-		return traceLinks;
+		return traces;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TracePackage.TRACE_MODEL__TRACE_LINKS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTraceLinks()).basicAdd(otherEnd, msgs);
+			case TracePackage.TRACE_MODEL__TRACES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTraces()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TracePackage.TRACE_MODEL__TRACE_LINKS:
-				return ((InternalEList<?>)getTraceLinks()).basicRemove(otherEnd, msgs);
+			case TracePackage.TRACE_MODEL__TRACES:
+				return ((InternalEList<?>)getTraces()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TracePackage.TRACE_MODEL__TRACE_LINKS:
-				return getTraceLinks();
+			case TracePackage.TRACE_MODEL__TRACES:
+				return getTraces();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TracePackage.TRACE_MODEL__TRACE_LINKS:
-				getTraceLinks().clear();
-				getTraceLinks().addAll((Collection<? extends TraceLink>)newValue);
+			case TracePackage.TRACE_MODEL__TRACES:
+				getTraces().clear();
+				getTraces().addAll((Collection<? extends Trace>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TracePackage.TRACE_MODEL__TRACE_LINKS:
-				getTraceLinks().clear();
+			case TracePackage.TRACE_MODEL__TRACES:
+				getTraces().clear();
 				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TracePackage.TRACE_MODEL__TRACE_LINKS:
-				return traceLinks != null && !traceLinks.isEmpty();
+			case TracePackage.TRACE_MODEL__TRACES:
+				return traces != null && !traces.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} // TraceModelImpl
+} //TraceModelImpl

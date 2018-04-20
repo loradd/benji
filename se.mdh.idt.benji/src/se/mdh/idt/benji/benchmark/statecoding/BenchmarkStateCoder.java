@@ -3,8 +3,6 @@ package se.mdh.idt.benji.benchmark.statecoding;
 import static se.mdh.idt.benji.trace.TraceBuilder.TRACE_URI;
 import static se.mdh.idt.benji.trace.TracePackage.Literals.TRACE_MODEL;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +18,7 @@ import org.eclipse.viatra.dse.statecode.IStateCoder;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.xtext.EcoreUtil2;
 
-import se.mdh.idt.benji.trace.TraceLink;
+import se.mdh.idt.benji.trace.Trace;
 import se.mdh.idt.benji.trace.TraceModel;
 /**
  * @author Lorenzo Addazi 
@@ -88,7 +86,8 @@ public class BenchmarkStateCoder implements IStateCoder {
 			.map(parameterName -> match.get(parameterName))
 			.collect(Collectors.toList()); 
 		List<String> parameterDescriptions = parameterValues.stream()
-			.map(parameterValue -> parameterValue instanceof TraceLink ? createDescription(((TraceLink)parameterValue).getTarget()) : parameterValue.toString())
+			.map(parameterValue -> parameterValue instanceof Trace ? 
+				createDescription(((Trace)parameterValue).getCurrent()) : parameterValue.toString())
 			.collect(Collectors.toList()); 
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(patternName + "[" + String.join("|", parameterDescriptions) + "]"); 
@@ -98,23 +97,23 @@ public class BenchmarkStateCoder implements IStateCoder {
 	// create description from trace model
 	private static String createDescription(TraceModel traceModel) {
 		StringBuilder traceModelDescription = new StringBuilder();
-		List<TraceLink> traceLinks = traceModel.getTraceLinks(); 
-		List<String> traceLinkDescriptions = traceLinks.stream()
-			.filter(traceLink -> traceLink.getTarget() != null)
-			.filter(traceLink -> traceLink.getTarget().eResource() != null)
-			.map(traceLink -> createDescription(traceLink))
+		List<Trace> traces = traceModel.getTraces(); 
+		List<String> traceDescriptions = traces.stream()
+			.filter(trace -> trace.getCurrent() != null)
+			.filter(trace -> trace.getCurrent().eResource() != null)
+			.map(trace -> createDescription(trace))
 			.sorted().collect(Collectors.toList());
-		traceModelDescription.append(String.join(",", traceLinkDescriptions)); 
+		traceModelDescription.append(String.join(",", traceDescriptions)); 
 		return traceModelDescription.toString(); 
 	}
 	
-	// create description from trace link
-	private static String createDescription(TraceLink traceLink) {
-		StringBuilder traceLinkDescription = new StringBuilder();
-		EObject target = traceLink.getTarget(); 
-		String targetDescription = createDescription(target); 
-		traceLinkDescription.append(targetDescription); 
-		return traceLinkDescription.toString(); 
+	// create description from trace
+	private static String createDescription(Trace trace) {
+		StringBuilder traceDescription = new StringBuilder();
+		EObject current = trace.getCurrent();  
+		String currentDescription = createDescription(current); 
+		traceDescription.append(currentDescription); 
+		return traceDescription.toString(); 
 	}
 	
 	// create description from eObject

@@ -1,27 +1,27 @@
 @Ecore(name='Trace', nsURI='http://www.mdh.se/idt/benji/trace/Trace')
-@GenModel(name='Trace', prefix='Trace', modelName='Trace', modelDirectory="se.mdh.idt.benji/src")
+@GenModel(name='Trace', prefix='Trace', modelName='Trace')
 package se.mdh.idt.benji.trace
 
 import org.eclipse.emf.ecore.EObject
 
-// trace model
+// model
 class TraceModel {
-	// containment - trace links
-	contains TraceLink[0..*] traceLinks opposite traceModel
+	// containment - traces
+	contains Trace[0..*] traces opposite model
 }
 
-// trace link
-class TraceLink {
-	// container - trace model
-	container TraceModel[1..1] traceModel opposite traceLinks
-	// reference - source
-	refers EObject[1..1] source
-	// reference - target 
-	refers EObject[1..1] target
+// trace 
+class Trace {
+	// container - model
+	container TraceModel[1..1] model opposite traces
+	// reference - initial
+	refers EObject[1..1] initial
+	// reference - current 
+	refers EObject[1..1] current
 	// attribute - identifier
 	String[1..1] identifier 
 	// operations - source
-	op <T extends EObject> T source () { return this.getSource() as T }
+	op <T extends EObject> T initial () { return this.getInitial() as T }
 	// operations - target
-	op <T extends EObject> T target () { return this.getTarget() as T }
+	op <T extends EObject> T current () { return this.getCurrent() as T }
 }

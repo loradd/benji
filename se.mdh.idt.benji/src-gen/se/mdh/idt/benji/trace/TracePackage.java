@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see se.mdh.idt.benji.trace.TraceFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel name='Trace' prefix='Trace' modelName='Trace' modelDirectory='se.mdh.idt.benji/src' basePackage='se.mdh.idt.benji'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel name='Trace' prefix='Trace' modelName='Trace' basePackage='se.mdh.idt.benji'"
  * @generated
  */
 public interface TracePackage extends EPackage {
@@ -69,13 +69,13 @@ public interface TracePackage extends EPackage {
 	int TRACE_MODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Trace Links</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Traces</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_MODEL__TRACE_LINKS = 0;
+	int TRACE_MODEL__TRACES = 0;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -96,41 +96,41 @@ public interface TracePackage extends EPackage {
 	int TRACE_MODEL_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link se.mdh.idt.benji.trace.impl.TraceLinkImpl <em>Link</em>}' class.
+	 * The meta object id for the '{@link se.mdh.idt.benji.trace.impl.TraceImpl <em>Trace</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see se.mdh.idt.benji.trace.impl.TraceLinkImpl
-	 * @see se.mdh.idt.benji.trace.impl.TracePackageImpl#getTraceLink()
+	 * @see se.mdh.idt.benji.trace.impl.TraceImpl
+	 * @see se.mdh.idt.benji.trace.impl.TracePackageImpl#getTrace()
 	 * @generated
 	 */
-	int TRACE_LINK = 1;
+	int TRACE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Trace Model</b></em>' container reference.
+	 * The feature id for the '<em><b>Model</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_LINK__TRACE_MODEL = 0;
+	int TRACE__MODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * The feature id for the '<em><b>Initial</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_LINK__SOURCE = 1;
+	int TRACE__INITIAL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * The feature id for the '<em><b>Current</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_LINK__TARGET = 2;
+	int TRACE__CURRENT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -139,43 +139,43 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_LINK__IDENTIFIER = 3;
+	int TRACE__IDENTIFIER = 3;
 
 	/**
-	 * The number of structural features of the '<em>Link</em>' class.
+	 * The number of structural features of the '<em>Trace</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_LINK_FEATURE_COUNT = 4;
+	int TRACE_FEATURE_COUNT = 4;
 
 	/**
-	 * The operation id for the '<em>Source</em>' operation.
+	 * The operation id for the '<em>Initial</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_LINK___SOURCE = 0;
+	int TRACE___INITIAL = 0;
 
 	/**
-	 * The operation id for the '<em>Target</em>' operation.
+	 * The operation id for the '<em>Current</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_LINK___TARGET = 1;
+	int TRACE___CURRENT = 1;
 
 	/**
-	 * The number of operations of the '<em>Link</em>' class.
+	 * The number of operations of the '<em>Trace</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_LINK_OPERATION_COUNT = 2;
+	int TRACE_OPERATION_COUNT = 2;
 
 
 	/**
@@ -189,89 +189,89 @@ public interface TracePackage extends EPackage {
 	EClass getTraceModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link se.mdh.idt.benji.trace.TraceModel#getTraceLinks <em>Trace Links</em>}'.
+	 * Returns the meta object for the containment reference list '{@link se.mdh.idt.benji.trace.TraceModel#getTraces <em>Traces</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Trace Links</em>'.
-	 * @see se.mdh.idt.benji.trace.TraceModel#getTraceLinks()
+	 * @return the meta object for the containment reference list '<em>Traces</em>'.
+	 * @see se.mdh.idt.benji.trace.TraceModel#getTraces()
 	 * @see #getTraceModel()
 	 * @generated
 	 */
-	EReference getTraceModel_TraceLinks();
+	EReference getTraceModel_Traces();
 
 	/**
-	 * Returns the meta object for class '{@link se.mdh.idt.benji.trace.TraceLink <em>Link</em>}'.
+	 * Returns the meta object for class '{@link se.mdh.idt.benji.trace.Trace <em>Trace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Link</em>'.
-	 * @see se.mdh.idt.benji.trace.TraceLink
+	 * @return the meta object for class '<em>Trace</em>'.
+	 * @see se.mdh.idt.benji.trace.Trace
 	 * @generated
 	 */
-	EClass getTraceLink();
+	EClass getTrace();
 
 	/**
-	 * Returns the meta object for the container reference '{@link se.mdh.idt.benji.trace.TraceLink#getTraceModel <em>Trace Model</em>}'.
+	 * Returns the meta object for the container reference '{@link se.mdh.idt.benji.trace.Trace#getModel <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Trace Model</em>'.
-	 * @see se.mdh.idt.benji.trace.TraceLink#getTraceModel()
-	 * @see #getTraceLink()
+	 * @return the meta object for the container reference '<em>Model</em>'.
+	 * @see se.mdh.idt.benji.trace.Trace#getModel()
+	 * @see #getTrace()
 	 * @generated
 	 */
-	EReference getTraceLink_TraceModel();
+	EReference getTrace_Model();
 
 	/**
-	 * Returns the meta object for the reference '{@link se.mdh.idt.benji.trace.TraceLink#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link se.mdh.idt.benji.trace.Trace#getInitial <em>Initial</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see se.mdh.idt.benji.trace.TraceLink#getSource()
-	 * @see #getTraceLink()
+	 * @return the meta object for the reference '<em>Initial</em>'.
+	 * @see se.mdh.idt.benji.trace.Trace#getInitial()
+	 * @see #getTrace()
 	 * @generated
 	 */
-	EReference getTraceLink_Source();
+	EReference getTrace_Initial();
 
 	/**
-	 * Returns the meta object for the reference '{@link se.mdh.idt.benji.trace.TraceLink#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link se.mdh.idt.benji.trace.Trace#getCurrent <em>Current</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see se.mdh.idt.benji.trace.TraceLink#getTarget()
-	 * @see #getTraceLink()
+	 * @return the meta object for the reference '<em>Current</em>'.
+	 * @see se.mdh.idt.benji.trace.Trace#getCurrent()
+	 * @see #getTrace()
 	 * @generated
 	 */
-	EReference getTraceLink_Target();
+	EReference getTrace_Current();
 
 	/**
-	 * Returns the meta object for the attribute '{@link se.mdh.idt.benji.trace.TraceLink#getIdentifier <em>Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link se.mdh.idt.benji.trace.Trace#getIdentifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see se.mdh.idt.benji.trace.TraceLink#getIdentifier()
-	 * @see #getTraceLink()
+	 * @see se.mdh.idt.benji.trace.Trace#getIdentifier()
+	 * @see #getTrace()
 	 * @generated
 	 */
-	EAttribute getTraceLink_Identifier();
+	EAttribute getTrace_Identifier();
 
 	/**
-	 * Returns the meta object for the '{@link se.mdh.idt.benji.trace.TraceLink#source() <em>Source</em>}' operation.
+	 * Returns the meta object for the '{@link se.mdh.idt.benji.trace.Trace#initial() <em>Initial</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Source</em>' operation.
-	 * @see se.mdh.idt.benji.trace.TraceLink#source()
+	 * @return the meta object for the '<em>Initial</em>' operation.
+	 * @see se.mdh.idt.benji.trace.Trace#initial()
 	 * @generated
 	 */
-	EOperation getTraceLink__Source();
+	EOperation getTrace__Initial();
 
 	/**
-	 * Returns the meta object for the '{@link se.mdh.idt.benji.trace.TraceLink#target() <em>Target</em>}' operation.
+	 * Returns the meta object for the '{@link se.mdh.idt.benji.trace.Trace#current() <em>Current</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Target</em>' operation.
-	 * @see se.mdh.idt.benji.trace.TraceLink#target()
+	 * @return the meta object for the '<em>Current</em>' operation.
+	 * @see se.mdh.idt.benji.trace.Trace#current()
 	 * @generated
 	 */
-	EOperation getTraceLink__Target();
+	EOperation getTrace__Current();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -307,46 +307,46 @@ public interface TracePackage extends EPackage {
 		EClass TRACE_MODEL = eINSTANCE.getTraceModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Trace Links</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Traces</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRACE_MODEL__TRACE_LINKS = eINSTANCE.getTraceModel_TraceLinks();
+		EReference TRACE_MODEL__TRACES = eINSTANCE.getTraceModel_Traces();
 
 		/**
-		 * The meta object literal for the '{@link se.mdh.idt.benji.trace.impl.TraceLinkImpl <em>Link</em>}' class.
+		 * The meta object literal for the '{@link se.mdh.idt.benji.trace.impl.TraceImpl <em>Trace</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see se.mdh.idt.benji.trace.impl.TraceLinkImpl
-		 * @see se.mdh.idt.benji.trace.impl.TracePackageImpl#getTraceLink()
+		 * @see se.mdh.idt.benji.trace.impl.TraceImpl
+		 * @see se.mdh.idt.benji.trace.impl.TracePackageImpl#getTrace()
 		 * @generated
 		 */
-		EClass TRACE_LINK = eINSTANCE.getTraceLink();
+		EClass TRACE = eINSTANCE.getTrace();
 
 		/**
-		 * The meta object literal for the '<em><b>Trace Model</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Model</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRACE_LINK__TRACE_MODEL = eINSTANCE.getTraceLink_TraceModel();
+		EReference TRACE__MODEL = eINSTANCE.getTrace_Model();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Initial</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRACE_LINK__SOURCE = eINSTANCE.getTraceLink_Source();
+		EReference TRACE__INITIAL = eINSTANCE.getTrace_Initial();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Current</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRACE_LINK__TARGET = eINSTANCE.getTraceLink_Target();
+		EReference TRACE__CURRENT = eINSTANCE.getTrace_Current();
 
 		/**
 		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
@@ -354,23 +354,23 @@ public interface TracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TRACE_LINK__IDENTIFIER = eINSTANCE.getTraceLink_Identifier();
+		EAttribute TRACE__IDENTIFIER = eINSTANCE.getTrace_Identifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' operation.
+		 * The meta object literal for the '<em><b>Initial</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation TRACE_LINK___SOURCE = eINSTANCE.getTraceLink__Source();
+		EOperation TRACE___INITIAL = eINSTANCE.getTrace__Initial();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' operation.
+		 * The meta object literal for the '<em><b>Current</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation TRACE_LINK___TARGET = eINSTANCE.getTraceLink__Target();
+		EOperation TRACE___CURRENT = eINSTANCE.getTrace__Current();
 
 	}
 

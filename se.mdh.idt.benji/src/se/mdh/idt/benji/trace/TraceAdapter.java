@@ -12,19 +12,19 @@ import org.eclipse.xtext.EcoreUtil2;
  **/
 public class TraceAdapter extends AdapterImpl {
 	
-	// constructor (target)
-	public TraceAdapter (ResourceSet resourceSet, EObject target) {
-		this (resourceSet, null, target);  
+	// constructor (current)
+	public TraceAdapter (ResourceSet resourceSet, EObject current) {
+		this (resourceSet, null, current);  
 	}
 	
-	// constructor (source, target)
-	public TraceAdapter (ResourceSet resourceSet, EObject source, EObject target) {
+	// constructor (initial, current)
+	public TraceAdapter (ResourceSet resourceSet, EObject initial, EObject current) {
 		Resource traceResource = resourceSet.getResource(URI.createURI(TraceBuilder.TRACE_URI), true);
 		TraceModel traceModel = (TraceModel) EcoreUtil2.getObjectByType(traceResource.getContents(), TracePackage.Literals.TRACE_MODEL); 
-		TraceLink traceLink = TraceFactory.eINSTANCE.createTraceLink(); 
-		traceLink.setSource(source);
-		traceLink.setTarget(target);
-		traceModel.getTraceLinks().add(traceLink);
+		Trace trace = TraceFactory.eINSTANCE.createTrace(); 
+		trace.setInitial(initial);
+		trace.setCurrent(current);
+		traceModel.getTraces().add(trace);
 	}
 	
 }

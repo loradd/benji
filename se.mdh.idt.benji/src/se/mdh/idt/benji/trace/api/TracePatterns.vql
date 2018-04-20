@@ -5,11 +5,11 @@ import 'http://www.eclipse.org/emf/2002/Ecore'
 import 'http://www.mdh.se/idt/benji/trace/Trace'
 
 // trace link - initial element
-pattern initial (traceLink : TraceLink, initial_element : EObject) {
-	TraceLink.source (traceLink, initial_element); 
+pattern initial (trace : Trace, initial : EObject) {
+	Trace.initial (trace, initial);  
 }
 
 // trace link - current element
-pattern current (traceLink : TraceLink, current_element : EObject) {
-	TraceLink.target (traceLink, current_element); 	
+pattern current (trace : Trace, current : EObject) {
+	Trace.current (trace, current); 	
 }
