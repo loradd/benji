@@ -237,7 +237,7 @@ public final class Current extends BaseGeneratedEMFQuerySpecification<Current.Ma
    * 
    * <p>Original source:
    * <code><pre>
-   * // trace link - current element
+   * // trace - current element
    * pattern current (trace : Trace, current : EObject) {
    * 	Trace.current (trace, current); 	
    * }

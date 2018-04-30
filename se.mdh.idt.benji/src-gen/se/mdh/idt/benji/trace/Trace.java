@@ -130,22 +130,4 @@ public interface Trace extends EObject {
 	 */
 	void setIdentifier(String value);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='&lt;%org.eclipse.emf.ecore.EObject%&gt; _initial = this.getInitial();\nreturn ((T) _initial);'"
-	 * @generated
-	 */
-	<T extends EObject> T initial();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='&lt;%org.eclipse.emf.ecore.EObject%&gt; _current = this.getCurrent();\nreturn ((T) _current);'"
-	 * @generated
-	 */
-	<T extends EObject> T current();
-
 } // Trace

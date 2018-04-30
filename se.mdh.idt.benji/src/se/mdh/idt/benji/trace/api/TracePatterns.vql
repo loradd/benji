@@ -4,12 +4,30 @@ package se.mdh.idt.benji.trace.api
 import 'http://www.eclipse.org/emf/2002/Ecore'
 import 'http://www.mdh.se/idt/benji/trace/Trace'
 
-// trace link - initial element
+// trace - initial element
 pattern initial (trace : Trace, initial : EObject) {
 	Trace.initial (trace, initial);  
 }
 
-// trace link - current element
+// trace - current element
 pattern current (trace : Trace, current : EObject) {
 	Trace.current (trace, current); 	
+}
+
+// trace - preserved
+pattern preserved (trace : Trace, initial : EObject, current : EObject) {
+	find initial (trace, initial); 
+	find current (trace, current);
+}
+
+// trace - created
+pattern created (trace : Trace, current : EObject) {
+	neg find initial (trace, _initial); 
+	find current (trace, current);
+}
+
+// trace - deleted
+pattern deleted (trace : Trace, initial : EObject) {
+	find initial (trace, initial); 
+	neg find current (trace, _current);
 }

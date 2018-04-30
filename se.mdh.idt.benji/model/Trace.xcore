@@ -20,8 +20,4 @@ class Trace {
 	refers EObject[1..1] current
 	// attribute - identifier
 	String[1..1] identifier 
-	// operations - source
-	op <T extends EObject> T initial () { return this.getInitial() as T }
-	// operations - target
-	op <T extends EObject> T current () { return this.getCurrent() as T }
 }

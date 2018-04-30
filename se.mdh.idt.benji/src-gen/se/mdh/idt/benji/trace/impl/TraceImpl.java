@@ -2,12 +2,8 @@
  */
 package se.mdh.idt.benji.trace.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -251,26 +247,6 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public <T extends EObject> T initial() {
-		EObject _initial = this.getInitial();
-		return ((T) _initial);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public <T extends EObject> T current() {
-		EObject _current = this.getCurrent();
-		return ((T) _current);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -399,22 +375,6 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case TracePackage.TRACE___INITIAL:
-				return initial();
-			case TracePackage.TRACE___CURRENT:
-				return current();
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

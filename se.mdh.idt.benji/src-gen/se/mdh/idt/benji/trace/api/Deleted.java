@@ -22,11 +22,11 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
-import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.NegativePatternCall;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -35,6 +35,8 @@ import org.eclipse.viatra.query.runtime.matchers.tuple.Tuple;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuples;
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
 import se.mdh.idt.benji.trace.Trace;
+import se.mdh.idt.benji.trace.api.Current;
+import se.mdh.idt.benji.trace.api.Initial;
 
 /**
  * A pattern-specific query specification that can instantiate Matcher in a type-safe way.
@@ -44,9 +46,9 @@ import se.mdh.idt.benji.trace.Trace;
  * 
  */
 @SuppressWarnings("all")
-public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Matcher> {
+public final class Deleted extends BaseGeneratedEMFQuerySpecification<Deleted.Matcher> {
   /**
-   * Pattern-specific match representation of the se.mdh.idt.benji.trace.api.initial pattern,
+   * Pattern-specific match representation of the se.mdh.idt.benji.trace.api.deleted pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -110,12 +112,12 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
     
     @Override
     public String patternName() {
-      return "se.mdh.idt.benji.trace.api.initial";
+      return "se.mdh.idt.benji.trace.api.deleted";
     }
     
     @Override
     public List<String> parameterNames() {
-      return Initial.Match.parameterNames;
+      return Deleted.Match.parameterNames;
     }
     
     @Override
@@ -124,7 +126,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
     }
     
     @Override
-    public Initial.Match toImmutable() {
+    public Deleted.Match toImmutable() {
       return isMutable() ? newMatch(fTrace, fInitial) : this;
     }
     
@@ -148,8 +150,8 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof Initial.Match)) {
-          Initial.Match other = (Initial.Match) obj;
+      if ((obj instanceof Deleted.Match)) {
+          Deleted.Match other = (Deleted.Match) obj;
           return Objects.equals(fTrace, other.fTrace) && Objects.equals(fInitial, other.fInitial);
       } else {
           // this should be infrequent
@@ -162,8 +164,8 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
     }
     
     @Override
-    public Initial specification() {
-      return Initial.instance();
+    public Deleted specification() {
+      return Deleted.instance();
     }
     
     /**
@@ -173,7 +175,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @return the empty match.
      * 
      */
-    public static Initial.Match newEmptyMatch() {
+    public static Deleted.Match newEmptyMatch() {
       return new Mutable(null, null);
     }
     
@@ -186,7 +188,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Initial.Match newMutableMatch(final Trace pTrace, final EObject pInitial) {
+    public static Deleted.Match newMutableMatch(final Trace pTrace, final EObject pInitial) {
       return new Mutable(pTrace, pInitial);
     }
     
@@ -199,11 +201,11 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @return the (partial) match object.
      * 
      */
-    public static Initial.Match newMatch(final Trace pTrace, final EObject pInitial) {
+    public static Deleted.Match newMatch(final Trace pTrace, final EObject pInitial) {
       return new Immutable(pTrace, pInitial);
     }
     
-    private static final class Mutable extends Initial.Match {
+    private static final class Mutable extends Deleted.Match {
       Mutable(final Trace pTrace, final EObject pInitial) {
         super(pTrace, pInitial);
       }
@@ -214,7 +216,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
       }
     }
     
-    private static final class Immutable extends Initial.Match {
+    private static final class Immutable extends Deleted.Match {
       Immutable(final Trace pTrace, final EObject pInitial) {
         super(pTrace, pInitial);
       }
@@ -227,7 +229,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
   }
   
   /**
-   * Generated pattern matcher API of the se.mdh.idt.benji.trace.api.initial pattern,
+   * Generated pattern matcher API of the se.mdh.idt.benji.trace.api.deleted pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -237,17 +239,18 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
    * 
    * <p>Original source:
    * <code><pre>
-   * // trace - initial element
-   * pattern initial (trace : Trace, initial : EObject) {
-   * 	Trace.initial (trace, initial);  
+   * // trace - deleted
+   * pattern deleted (trace : Trace, initial : EObject) {
+   * 	find initial (trace, initial); 
+   * 	neg find current (trace, _current);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see Initial
+   * @see Deleted
    * 
    */
-  public static class Matcher extends BaseMatcher<Initial.Match> {
+  public static class Matcher extends BaseMatcher<Deleted.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -256,7 +259,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static Initial.Matcher on(final ViatraQueryEngine engine) {
+    public static Deleted.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -271,7 +274,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static Initial.Matcher create() {
+    public static Deleted.Matcher create() {
       return new Matcher();
     }
     
@@ -279,7 +282,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
     
     private final static int POSITION_INITIAL = 1;
     
-    private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Initial.Matcher.class);
+    private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Deleted.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -300,7 +303,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Initial.Match> getAllMatches(final Trace pTrace, final EObject pInitial) {
+    public Collection<Deleted.Match> getAllMatches(final Trace pTrace, final EObject pInitial) {
       return rawGetAllMatches(new Object[]{pTrace, pInitial});
     }
     
@@ -312,7 +315,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Initial.Match getOneArbitraryMatch(final Trace pTrace, final EObject pInitial) {
+    public Deleted.Match getOneArbitraryMatch(final Trace pTrace, final EObject pInitial) {
       return rawGetOneArbitraryMatch(new Object[]{pTrace, pInitial});
     }
     
@@ -348,7 +351,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Trace pTrace, final EObject pInitial, final IMatchProcessor<? super Initial.Match> processor) {
+    public boolean forOneArbitraryMatch(final Trace pTrace, final EObject pInitial, final IMatchProcessor<? super Deleted.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pTrace, pInitial}, processor);
     }
     
@@ -361,8 +364,8 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @return the (partial) match object.
      * 
      */
-    public Initial.Match newMatch(final Trace pTrace, final EObject pInitial) {
-      return Initial.Match.newMatch(pTrace, pInitial);
+    public Deleted.Match newMatch(final Trace pTrace, final EObject pInitial) {
+      return Deleted.Match.newMatch(pTrace, pInitial);
     }
     
     /**
@@ -390,7 +393,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Trace> getAllValuesOftrace(final Initial.Match partialMatch) {
+    public Set<Trace> getAllValuesOftrace(final Deleted.Match partialMatch) {
       return rawAccumulateAllValuesOftrace(partialMatch.toArray());
     }
     
@@ -431,7 +434,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<EObject> getAllValuesOfinitial(final Initial.Match partialMatch) {
+    public Set<EObject> getAllValuesOfinitial(final Deleted.Match partialMatch) {
       return rawAccumulateAllValuesOfinitial(partialMatch.toArray());
     }
     
@@ -448,9 +451,9 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
     }
     
     @Override
-    protected Initial.Match tupleToMatch(final Tuple t) {
+    protected Deleted.Match tupleToMatch(final Tuple t) {
       try {
-          return Initial.Match.newMatch((Trace) t.get(POSITION_TRACE), (EObject) t.get(POSITION_INITIAL));
+          return Deleted.Match.newMatch((Trace) t.get(POSITION_TRACE), (EObject) t.get(POSITION_INITIAL));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -458,9 +461,9 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
     }
     
     @Override
-    protected Initial.Match arrayToMatch(final Object[] match) {
+    protected Deleted.Match arrayToMatch(final Object[] match) {
       try {
-          return Initial.Match.newMatch((Trace) match[POSITION_TRACE], (EObject) match[POSITION_INITIAL]);
+          return Deleted.Match.newMatch((Trace) match[POSITION_TRACE], (EObject) match[POSITION_INITIAL]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -468,9 +471,9 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
     }
     
     @Override
-    protected Initial.Match arrayToMatchMutable(final Object[] match) {
+    protected Deleted.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Initial.Match.newMutableMatch((Trace) match[POSITION_TRACE], (EObject) match[POSITION_INITIAL]);
+          return Deleted.Match.newMutableMatch((Trace) match[POSITION_TRACE], (EObject) match[POSITION_INITIAL]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -482,12 +485,12 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<Initial.Matcher> querySpecification() {
-      return Initial.instance();
+    public static IQuerySpecification<Deleted.Matcher> querySpecification() {
+      return Deleted.instance();
     }
   }
   
-  private Initial() {
+  private Deleted() {
     super(GeneratedPQuery.INSTANCE);
   }
   
@@ -496,7 +499,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static Initial instance() {
+  public static Deleted instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -505,35 +508,35 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
   }
   
   @Override
-  protected Initial.Matcher instantiate(final ViatraQueryEngine engine) {
-    return Initial.Matcher.on(engine);
+  protected Deleted.Matcher instantiate(final ViatraQueryEngine engine) {
+    return Deleted.Matcher.on(engine);
   }
   
   @Override
-  public Initial.Matcher instantiate() {
-    return Initial.Matcher.create();
+  public Deleted.Matcher instantiate() {
+    return Deleted.Matcher.create();
   }
   
   @Override
-  public Initial.Match newEmptyMatch() {
-    return Initial.Match.newEmptyMatch();
+  public Deleted.Match newEmptyMatch() {
+    return Deleted.Match.newEmptyMatch();
   }
   
   @Override
-  public Initial.Match newMatch(final Object... parameters) {
-    return Initial.Match.newMatch((se.mdh.idt.benji.trace.Trace) parameters[0], (org.eclipse.emf.ecore.EObject) parameters[1]);
+  public Deleted.Match newMatch(final Object... parameters) {
+    return Deleted.Match.newMatch((se.mdh.idt.benji.trace.Trace) parameters[0], (org.eclipse.emf.ecore.EObject) parameters[1]);
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: se.mdh.idt.benji.trace.api.Initial (visibility: PUBLIC, simpleName: Initial, identifier: se.mdh.idt.benji.trace.api.Initial, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: se.mdh.idt.benji.trace.api) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link JvmGenericType: se.mdh.idt.benji.trace.api.Deleted (visibility: PUBLIC, simpleName: Deleted, identifier: se.mdh.idt.benji.trace.api.Deleted, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: se.mdh.idt.benji.trace.api) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: se.mdh.idt.benji.trace.api.Initial (visibility: PUBLIC, simpleName: Initial, identifier: se.mdh.idt.benji.trace.api.Initial, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: se.mdh.idt.benji.trace.api) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link JvmGenericType: se.mdh.idt.benji.trace.api.Deleted (visibility: PUBLIC, simpleName: Deleted, identifier: se.mdh.idt.benji.trace.api.Deleted, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: se.mdh.idt.benji.trace.api) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private final static Initial INSTANCE = new Initial();
+    private final static Deleted INSTANCE = new Deleted();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -551,7 +554,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private final static Initial.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private final static Deleted.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
     private final PParameter parameter_pTrace = new PParameter("trace", "se.mdh.idt.benji.trace.Trace", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.mdh.se/idt/benji/trace/Trace", "Trace")), PParameterDirection.INOUT);
     
@@ -565,7 +568,7 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
     
     @Override
     public String getFullyQualifiedName() {
-      return "se.mdh.idt.benji.trace.api.initial";
+      return "se.mdh.idt.benji.trace.api.deleted";
     }
     
     @Override
@@ -585,18 +588,17 @@ public final class Initial extends BaseGeneratedEMFQuerySpecification<Initial.Ma
           PBody body = new PBody(this);
           PVariable var_trace = body.getOrCreateVariableByName("trace");
           PVariable var_initial = body.getOrCreateVariableByName("initial");
+          PVariable var__current = body.getOrCreateVariableByName("_current");
           new TypeConstraint(body, Tuples.flatTupleOf(var_trace), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.mdh.se/idt/benji/trace/Trace", "Trace")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_initial), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_trace, parameter_pTrace),
              new ExportedParameter(body, var_initial, parameter_pInitial)
           ));
-          // 	Trace.initial (trace, initial)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trace), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.mdh.se/idt/benji/trace/Trace", "Trace")));
-          PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trace, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.mdh.se/idt/benji/trace/Trace", "Trace", "initial")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
-          new Equality(body, var__virtual_0_, var_initial);
+          // 	find initial (trace, initial)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_trace, var_initial), Initial.instance().getInternalQueryRepresentation());
+          //  	neg find current (trace, _current)
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_trace, var__current), Current.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
       return bodies;

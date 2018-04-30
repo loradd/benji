@@ -4,7 +4,6 @@ package se.mdh.idt.benji.trace;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -151,31 +150,13 @@ public interface TracePackage extends EPackage {
 	int TRACE_FEATURE_COUNT = 4;
 
 	/**
-	 * The operation id for the '<em>Initial</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRACE___INITIAL = 0;
-
-	/**
-	 * The operation id for the '<em>Current</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRACE___CURRENT = 1;
-
-	/**
 	 * The number of operations of the '<em>Trace</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRACE_OPERATION_COUNT = 2;
+	int TRACE_OPERATION_COUNT = 0;
 
 
 	/**
@@ -252,26 +233,6 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTrace_Identifier();
-
-	/**
-	 * Returns the meta object for the '{@link se.mdh.idt.benji.trace.Trace#initial() <em>Initial</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Initial</em>' operation.
-	 * @see se.mdh.idt.benji.trace.Trace#initial()
-	 * @generated
-	 */
-	EOperation getTrace__Initial();
-
-	/**
-	 * Returns the meta object for the '{@link se.mdh.idt.benji.trace.Trace#current() <em>Current</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Current</em>' operation.
-	 * @see se.mdh.idt.benji.trace.Trace#current()
-	 * @generated
-	 */
-	EOperation getTrace__Current();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -355,22 +316,6 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TRACE__IDENTIFIER = eINSTANCE.getTrace_Identifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Initial</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TRACE___INITIAL = eINSTANCE.getTrace__Initial();
-
-		/**
-		 * The meta object literal for the '<em><b>Current</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TRACE___CURRENT = eINSTANCE.getTrace__Current();
 
 	}
 

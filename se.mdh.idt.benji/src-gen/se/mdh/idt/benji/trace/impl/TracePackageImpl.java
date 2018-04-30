@@ -4,11 +4,8 @@ package se.mdh.idt.benji.trace.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -171,24 +168,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTrace__Initial() {
-		return traceEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getTrace__Current() {
-		return traceEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public TraceFactory getTraceFactory() {
 		return (TraceFactory)getEFactoryInstance();
 	}
@@ -220,8 +199,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEReference(traceEClass, TRACE__INITIAL);
 		createEReference(traceEClass, TRACE__CURRENT);
 		createEAttribute(traceEClass, TRACE__IDENTIFIER);
-		createEOperation(traceEClass, TRACE___INITIAL);
-		createEOperation(traceEClass, TRACE___CURRENT);
 	}
 
 	/**
@@ -265,20 +242,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEReference(getTrace_Initial(), theEcorePackage.getEObject(), null, "initial", null, 1, 1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTrace_Current(), theEcorePackage.getEObject(), null, "current", null, 1, 1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTrace_Identifier(), theEcorePackage.getEString(), "identifier", null, 1, 1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		EOperation op = initEOperation(getTrace__Initial(), null, "initial", 0, 1, !IS_UNIQUE, IS_ORDERED);
-		ETypeParameter t1 = addETypeParameter(op, "T");
-		EGenericType g1 = createEGenericType(theEcorePackage.getEObject());
-		t1.getEBounds().add(g1);
-		g1 = createEGenericType(t1);
-		initEOperation(op, g1);
-
-		op = initEOperation(getTrace__Current(), null, "current", 0, 1, !IS_UNIQUE, IS_ORDERED);
-		t1 = addETypeParameter(op, "T");
-		g1 = createEGenericType(theEcorePackage.getEObject());
-		t1.getEBounds().add(g1);
-		g1 = createEGenericType(t1);
-		initEOperation(op, g1);
 
 		// Create resource
 		createResource(eNS_URI);
