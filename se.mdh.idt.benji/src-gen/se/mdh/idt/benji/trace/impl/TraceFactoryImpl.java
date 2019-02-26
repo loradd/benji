@@ -68,6 +68,7 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TraceModel createTraceModel() {
 		TraceModelImpl traceModel = new TraceModelImpl();
 		return traceModel;
@@ -78,6 +79,7 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Trace createTrace() {
 		TraceImpl trace = new TraceImpl();
 		return trace;
@@ -88,6 +90,7 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TracePackage getTracePackage() {
 		return (TracePackage)getEPackage();
 	}

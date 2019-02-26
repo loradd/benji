@@ -99,6 +99,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TraceModel getModel() {
 		if (eContainerFeatureID() != TracePackage.TRACE__MODEL) return null;
 		return (TraceModel)eContainer();
@@ -129,6 +130,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModel(TraceModel newModel) {
 		if (newModel != eInternalContainer() || (eContainerFeatureID() != TracePackage.TRACE__MODEL && newModel != null)) {
 			if (EcoreUtil.isAncestor(this, newModel))
@@ -150,6 +152,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject getInitial() {
 		if (initial != null && initial.eIsProxy()) {
 			InternalEObject oldInitial = (InternalEObject)initial;
@@ -176,6 +179,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInitial(EObject newInitial) {
 		EObject oldInitial = initial;
 		initial = newInitial;
@@ -188,6 +192,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject getCurrent() {
 		if (current != null && current.eIsProxy()) {
 			InternalEObject oldCurrent = (InternalEObject)current;
@@ -214,6 +219,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCurrent(EObject newCurrent) {
 		EObject oldCurrent = current;
 		current = newCurrent;
@@ -226,6 +232,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -235,6 +242,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -386,7 +394,7 @@ public class TraceImpl extends MinimalEObjectImpl.Container implements Trace {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
 		result.append(')');

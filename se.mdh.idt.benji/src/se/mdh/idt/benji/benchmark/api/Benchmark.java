@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
@@ -28,7 +29,6 @@ import org.eclipse.viatra.dse.objectives.Comparators;
 import org.eclipse.viatra.dse.solutionstore.SolutionStore;
 import org.eclipse.viatra.dse.statecode.IStateCoderFactory;
 import org.eclipse.viatra.dse.util.EMFHelper;
-import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
@@ -77,11 +77,11 @@ public class Benchmark {
 		this.constraints.forEach(constraint -> designSpaceExplorer.addTransformationRule(constraint.difference.getTransformationRule()));
 		this.constraints.forEach(constraint -> designSpaceExplorer.addGlobalConstraint(constraint.difference.getGlobalConstraint()));
 		this.constraints.forEach(constraint -> designSpaceExplorer.addObjective(Objectives
-			.createTrajectoryCostObjective("[LOWER BOUND] " + constraint.difference.getName())
+			.createTrajcetoryCostObjective("[LOWER BOUND] " + constraint.difference.getName())
 			.withRuleCost(constraint.difference.getTransformationRule(), 1.0)
 			.withHardConstraintOnFitness(constraint.lowerBound, Comparators.HIGHER_IS_BETTER)));
 		this.constraints.forEach(constraint -> designSpaceExplorer.addObjective(Objectives
-			.createTrajectoryCostObjective("[UPPER BOUND] " + constraint.difference.getName())
+			.createTrajcetoryCostObjective("[UPPER BOUND] " + constraint.difference.getName())
 			.withRuleCost(constraint.difference.getTransformationRule(), 1.0)
 			.withHardConstraintOnFitness(constraint.upperBound, Comparators.LOWER_IS_BETTER)));
 		designSpaceExplorer.addObjective(Objectives.createDepthHardObjective().withMinDepth(1));
@@ -134,7 +134,7 @@ public class Benchmark {
 			? extends IQuerySpecification<? extends ViatraQueryMatcher<? extends IPatternMatch>>, 
 			? extends IPatternMatch, ? extends ViatraQueryMatcher<? extends IPatternMatch>, 
 			? extends IQuerySpecification<? extends ViatraQueryMatcher<? extends IPatternMatch>>, 
-			? extends IMatchProcessor<? extends IPatternMatch>> difference; 
+			? extends Consumer<? extends IPatternMatch>> difference; 
 		
 		// constructor
 		public Constraint(int lowerBound, int upperBound, 
@@ -142,7 +142,7 @@ public class Benchmark {
 				? extends IQuerySpecification<? extends ViatraQueryMatcher<? extends IPatternMatch>>, 
 				? extends IPatternMatch, ? extends ViatraQueryMatcher<? extends IPatternMatch>, 
 				? extends IQuerySpecification<? extends ViatraQueryMatcher<? extends IPatternMatch>>, 
-				? extends IMatchProcessor<? extends IPatternMatch>> difference) {
+				? extends Consumer<? extends IPatternMatch>> difference) {
 			this.lowerBound = lowerBound; 
 			this.upperBound = upperBound; 
 			this.difference = difference; 

@@ -1,9 +1,6 @@
 package se.mdh.idt.benji.difference.objectives;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.viatra.dse.api.DSEException;

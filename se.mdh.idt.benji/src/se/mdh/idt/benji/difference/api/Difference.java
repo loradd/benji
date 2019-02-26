@@ -1,6 +1,7 @@
 package se.mdh.idt.benji.difference.api;
 
-import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
+import java.util.function.Consumer;
+
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
@@ -17,7 +18,7 @@ public class Difference <
 		Precondition extends IQuerySpecification<PreconditionMatcher>, 
 		PostconditionMatch extends IPatternMatch, PostconditionMatcher extends ViatraQueryMatcher<PostconditionMatch>, 
 		Postcondition extends IQuerySpecification<PostconditionMatcher>,
-		Action extends IMatchProcessor<PreconditionMatch>
+		Action extends Consumer<PreconditionMatch>
 > {
 
 	// batch transformation rule factory
@@ -67,8 +68,9 @@ public class Difference <
 	// getter - transformation rule
 	public BatchTransformationRule<PreconditionMatch, PreconditionMatcher> getTransformationRule() {
 		if (this.rule == null) {
-			this.rule = batchTransformationRuleFactory.<PreconditionMatch, PreconditionMatcher>createRule()
-				.name(this.name).precondition(this.precondition).action(this.action).build(); 
+			this.rule = batchTransformationRuleFactory.
+					<PreconditionMatch, PreconditionMatcher>createRule(this.precondition)
+					.name(this.name).action(this.action).build(); 
 		}
 		return this.rule; 
 	}

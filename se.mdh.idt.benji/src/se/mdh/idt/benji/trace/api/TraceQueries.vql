@@ -14,19 +14,19 @@ pattern current (trace : Trace, current : EObject) {
 	Trace.current (trace, current); 	
 }
 
-// trace - preserved
+// trace - preserved element
 pattern preserved (trace : Trace, initial : EObject, current : EObject) {
 	find initial (trace, initial); 
 	find current (trace, current);
 }
 
-// trace - created
+// trace - created element
 pattern created (trace : Trace, current : EObject) {
 	neg find initial (trace, _initial); 
 	find current (trace, current);
 }
 
-// trace - deleted
+// trace - deleted element
 pattern deleted (trace : Trace, initial : EObject) {
 	find initial (trace, initial); 
 	neg find current (trace, _current);

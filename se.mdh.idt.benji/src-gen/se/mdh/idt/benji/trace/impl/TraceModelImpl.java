@@ -68,6 +68,7 @@ public class TraceModelImpl extends MinimalEObjectImpl.Container implements Trac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Trace> getTraces() {
 		if (traces == null) {
 			traces = new EObjectContainmentWithInverseEList<Trace>(Trace.class, this, TracePackage.TRACE_MODEL__TRACES, TracePackage.TRACE__MODEL);

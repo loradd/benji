@@ -1,19 +1,21 @@
 /**
- * Generated from platform:/resource/se.mdh.idt.benji/src/se/mdh/idt/benji/trace/api/TracePatterns.vql
+ * Generated from platform:/resource/se.mdh.idt.benji/src/se/mdh/idt/benji/trace/api/TraceQueries.vql
  */
 package se.mdh.idt.benji.trace.api;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -22,6 +24,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
+import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
@@ -41,6 +44,15 @@ import se.mdh.idt.benji.trace.api.Initial;
 /**
  * A pattern-specific query specification that can instantiate Matcher in a type-safe way.
  * 
+ * <p>Original source:
+ *         <code><pre>
+ *         // trace - created element
+ *         pattern created (trace : Trace, current : EObject) {
+ *         	neg find initial (trace, _initial); 
+ *         	find current (trace, current);
+ *         }
+ * </pre></code>
+ * 
  * @see Matcher
  * @see Match
  * 
@@ -57,6 +69,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
    * or to specify the bound (fixed) input parameters when issuing a query.
    * 
    * @see Matcher
+   *  @see Processor
    * 
    */
   public static abstract class Match extends BasePatternMatch {
@@ -140,7 +153,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
     
     @Override
     public int hashCode() {
-      return Objects.hash (fTrace, fCurrent);
+      return Objects.hash(fTrace, fCurrent);
     }
     
     @Override
@@ -233,13 +246,13 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
-   * e.g. in conjunction with {@link ViatraQueryEngine#on(Notifier)}.
+   * e.g. in conjunction with {@link ViatraQueryEngine#on(QueryScope)}.
    * 
    * <p>Matches of the pattern will be represented as {@link Match}.
    * 
    * <p>Original source:
    * <code><pre>
-   * // trace - created
+   * // trace - created element
    * pattern created (trace : Trace, current : EObject) {
    * 	neg find initial (trace, _initial); 
    * 	find current (trace, current);
@@ -247,6 +260,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
    * </pre></code>
    * 
    * @see Match
+   *  @see Processor
    * @see Created
    * 
    */
@@ -254,7 +268,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
-     * The match set will be incrementally refreshed upon updates.
+     * 
      * @param engine the existing VIATRA Query engine in which this matcher will be created.
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
@@ -278,16 +292,16 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
       return new Matcher();
     }
     
-    private final static int POSITION_TRACE = 0;
+    private static final int POSITION_TRACE = 0;
     
-    private final static int POSITION_CURRENT = 1;
+    private static final int POSITION_CURRENT = 1;
     
-    private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Created.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Created.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
-     * The match set will be incrementally refreshed upon updates.
+     * 
      * @param engine the existing VIATRA Query engine in which this matcher will be created.
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
@@ -304,7 +318,22 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * 
      */
     public Collection<Created.Match> getAllMatches(final Trace pTrace, final EObject pCurrent) {
-      return rawGetAllMatches(new Object[]{pTrace, pCurrent});
+      return rawStreamAllMatches(new Object[]{pTrace, pCurrent}).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Returns a stream of all matches of the pattern that conform to the given fixed values of some parameters.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     * @param pTrace the fixed value of pattern parameter trace, or null if not bound.
+     * @param pCurrent the fixed value of pattern parameter current, or null if not bound.
+     * @return a stream of matches represented as a Match object.
+     * 
+     */
+    public Stream<Created.Match> streamAllMatches(final Trace pTrace, final EObject pCurrent) {
+      return rawStreamAllMatches(new Object[]{pTrace, pCurrent});
     }
     
     /**
@@ -315,7 +344,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Created.Match getOneArbitraryMatch(final Trace pTrace, final EObject pCurrent) {
+    public Optional<Created.Match> getOneArbitraryMatch(final Trace pTrace, final EObject pCurrent) {
       return rawGetOneArbitraryMatch(new Object[]{pTrace, pCurrent});
     }
     
@@ -343,6 +372,17 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
     }
     
     /**
+     * Executes the given processor on each match of the pattern that conforms to the given fixed values of some parameters.
+     * @param pTrace the fixed value of pattern parameter trace, or null if not bound.
+     * @param pCurrent the fixed value of pattern parameter current, or null if not bound.
+     * @param processor the action that will process each pattern match.
+     * 
+     */
+    public void forEachMatch(final Trace pTrace, final EObject pCurrent, final Consumer<? super Created.Match> processor) {
+      rawForEachMatch(new Object[]{pTrace, pCurrent}, processor);
+    }
+    
+    /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
      * @param pTrace the fixed value of pattern parameter trace, or null if not bound.
@@ -351,7 +391,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Trace pTrace, final EObject pCurrent, final IMatchProcessor<? super Created.Match> processor) {
+    public boolean forOneArbitraryMatch(final Trace pTrace, final EObject pCurrent, final Consumer<? super Created.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pTrace, pCurrent}, processor);
     }
     
@@ -373,10 +413,8 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Set<Trace> rawAccumulateAllValuesOftrace(final Object[] parameters) {
-      Set<Trace> results = new HashSet<Trace>();
-      rawAccumulateAllValues(POSITION_TRACE, parameters, results);
-      return results;
+    protected Stream<Trace> rawStreamAllValuesOftrace(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_TRACE, parameters).map(Trace.class::cast);
     }
     
     /**
@@ -385,7 +423,44 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * 
      */
     public Set<Trace> getAllValuesOftrace() {
-      return rawAccumulateAllValuesOftrace(emptyArray());
+      return rawStreamAllValuesOftrace(emptyArray()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for trace.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<Trace> streamAllValuesOftrace() {
+      return rawStreamAllValuesOftrace(emptyArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for trace.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<Trace> streamAllValuesOftrace(final Created.Match partialMatch) {
+      return rawStreamAllValuesOftrace(partialMatch.toArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for trace.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<Trace> streamAllValuesOftrace(final EObject pCurrent) {
+      return rawStreamAllValuesOftrace(new Object[]{null, pCurrent});
     }
     
     /**
@@ -394,7 +469,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * 
      */
     public Set<Trace> getAllValuesOftrace(final Created.Match partialMatch) {
-      return rawAccumulateAllValuesOftrace(partialMatch.toArray());
+      return rawStreamAllValuesOftrace(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
@@ -403,10 +478,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * 
      */
     public Set<Trace> getAllValuesOftrace(final EObject pCurrent) {
-      return rawAccumulateAllValuesOftrace(new Object[]{
-      null, 
-      pCurrent
-      });
+      return rawStreamAllValuesOftrace(new Object[]{null, pCurrent}).collect(Collectors.toSet());
     }
     
     /**
@@ -414,10 +486,8 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Set<EObject> rawAccumulateAllValuesOfcurrent(final Object[] parameters) {
-      Set<EObject> results = new HashSet<EObject>();
-      rawAccumulateAllValues(POSITION_CURRENT, parameters, results);
-      return results;
+    protected Stream<EObject> rawStreamAllValuesOfcurrent(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_CURRENT, parameters).map(EObject.class::cast);
     }
     
     /**
@@ -426,7 +496,44 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * 
      */
     public Set<EObject> getAllValuesOfcurrent() {
-      return rawAccumulateAllValuesOfcurrent(emptyArray());
+      return rawStreamAllValuesOfcurrent(emptyArray()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for current.
+     * @return the Set of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<EObject> streamAllValuesOfcurrent() {
+      return rawStreamAllValuesOfcurrent(emptyArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for current.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<EObject> streamAllValuesOfcurrent(final Created.Match partialMatch) {
+      return rawStreamAllValuesOfcurrent(partialMatch.toArray());
+    }
+    
+    /**
+     * Retrieve the set of values that occur in matches for current.
+     * </p>
+     * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
+     * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
+     * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
+     *      
+     * @return the Stream of all values or empty set if there are no matches
+     * 
+     */
+    public Stream<EObject> streamAllValuesOfcurrent(final Trace pTrace) {
+      return rawStreamAllValuesOfcurrent(new Object[]{pTrace, null});
     }
     
     /**
@@ -435,7 +542,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * 
      */
     public Set<EObject> getAllValuesOfcurrent(final Created.Match partialMatch) {
-      return rawAccumulateAllValuesOfcurrent(partialMatch.toArray());
+      return rawStreamAllValuesOfcurrent(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
@@ -444,10 +551,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * 
      */
     public Set<EObject> getAllValuesOfcurrent(final Trace pTrace) {
-      return rawAccumulateAllValuesOfcurrent(new Object[]{
-      pTrace, 
-      null
-      });
+      return rawStreamAllValuesOfcurrent(new Object[]{pTrace, null}).collect(Collectors.toSet());
     }
     
     @Override
@@ -487,6 +591,27 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      */
     public static IQuerySpecification<Created.Matcher> querySpecification() {
       return Created.instance();
+    }
+  }
+  
+  /**
+   * A match processor tailored for the se.mdh.idt.benji.trace.api.created pattern.
+   * 
+   * Clients should derive an (anonymous) class that implements the abstract process().
+   * 
+   */
+  public static abstract class Processor implements Consumer<Created.Match> {
+    /**
+     * Defines the action that is to be executed on each match.
+     * @param pTrace the value of pattern parameter trace in the currently processed match
+     * @param pCurrent the value of pattern parameter current in the currently processed match
+     * 
+     */
+    public abstract void accept(final Trace pTrace, final EObject pCurrent);
+    
+    @Override
+    public void accept(final Created.Match match) {
+      accept(match.getTrace(), match.getCurrent());
     }
   }
   
@@ -536,7 +661,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
    * 
    */
   private static class LazyHolder {
-    private final static Created INSTANCE = new Created();
+    private static final Created INSTANCE = new Created();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -545,7 +670,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
      * <p> The static initializer is defined using a helper field to work around limitations of the code generator.
      * 
      */
-    private final static Object STATIC_INITIALIZER = ensureInitialized();
+    private static final Object STATIC_INITIALIZER = ensureInitialized();
     
     public static Object ensureInitialized() {
       INSTANCE.ensureInitializedInternal();
@@ -554,13 +679,13 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private final static Created.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final Created.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_pTrace = new PParameter("trace", "se.mdh.idt.benji.trace.Trace", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.mdh.se/idt/benji/trace/Trace", "Trace")), PParameterDirection.INOUT);
+    private final PParameter parameter_trace = new PParameter("trace", "se.mdh.idt.benji.trace.Trace", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.mdh.se/idt/benji/trace/Trace", "Trace")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_pCurrent = new PParameter("current", "org.eclipse.emf.ecore.EObject", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EObject")), PParameterDirection.INOUT);
+    private final PParameter parameter_current = new PParameter("current", "org.eclipse.emf.ecore.EObject", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EObject")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_pTrace, parameter_pCurrent);
+    private final List<PParameter> parameters = Arrays.asList(parameter_trace, parameter_current);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -583,6 +708,7 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
     
     @Override
     public Set<PBody> doGetContainedBodies() {
+      setEvaluationHints(new QueryEvaluationHint(null, QueryEvaluationHint.BackendRequirement.UNSPECIFIED));
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
@@ -592,8 +718,8 @@ public final class Created extends BaseGeneratedEMFQuerySpecification<Created.Ma
           new TypeConstraint(body, Tuples.flatTupleOf(var_trace), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.mdh.se/idt/benji/trace/Trace", "Trace")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_current), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EObject")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_trace, parameter_pTrace),
-             new ExportedParameter(body, var_current, parameter_pCurrent)
+             new ExportedParameter(body, var_trace, parameter_trace),
+             new ExportedParameter(body, var_current, parameter_current)
           ));
           // 	neg find initial (trace, _initial)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_trace, var__initial), Initial.instance().getInternalQueryRepresentation());

@@ -1,5 +1,5 @@
 /**
- * Generated from platform:/resource/se.mdh.idt.benji/src/se/mdh/idt/benji/trace/api/TracePatterns.vql
+ * Generated from platform:/resource/se.mdh.idt.benji/src/se/mdh/idt/benji/trace/api/TraceQueries.vql
  */
 package se.mdh.idt.benji.trace.api;
 
@@ -12,10 +12,10 @@ import se.mdh.idt.benji.trace.api.Initial;
 import se.mdh.idt.benji.trace.api.Preserved;
 
 /**
- * A pattern group formed of all public patterns defined in TracePatterns.vql.
+ * A pattern group formed of all public patterns defined in TraceQueries.vql.
  * 
- * <p>Use the static instance as any {@link org.eclipse.viatra.query.runtime.api.IPatternGroup}, to conveniently prepare
- * a VIATRA Query engine for matching all patterns originally defined in file TracePatterns.vql,
+ * <p>Use the static instance as any {@link interface org.eclipse.viatra.query.runtime.api.IQueryGroup}, to conveniently prepare
+ * a VIATRA Query engine for matching all patterns originally defined in file TraceQueries.vql,
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package se.mdh.idt.benji.trace.api, the group contains the definition of the following patterns: <ul>
@@ -26,11 +26,11 @@ import se.mdh.idt.benji.trace.api.Preserved;
  * <li>deleted</li>
  * </ul>
  * 
- * @see IPatternGroup
+ * @see IQueryGroup
  * 
  */
 @SuppressWarnings("all")
-public final class TracePatterns extends BaseGeneratedPatternGroup {
+public final class TraceQueries extends BaseGeneratedPatternGroup {
   /**
    * Access the pattern group.
    * 
@@ -38,16 +38,16 @@ public final class TracePatterns extends BaseGeneratedPatternGroup {
    * @throws ViatraQueryRuntimeException if there was an error loading the generated code of pattern specifications
    * 
    */
-  public static TracePatterns instance() {
+  public static TraceQueries instance() {
     if (INSTANCE == null) {
-        INSTANCE = new TracePatterns();
+        INSTANCE = new TraceQueries();
     }
     return INSTANCE;
   }
   
-  private static TracePatterns INSTANCE;
+  private static TraceQueries INSTANCE;
   
-  private TracePatterns() {
+  private TraceQueries() {
     querySpecifications.add(Initial.instance());
     querySpecifications.add(Current.instance());
     querySpecifications.add(Preserved.instance());

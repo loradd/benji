@@ -2,11 +2,11 @@ package se.mdh.idt.benji.benchmark.api;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
@@ -50,7 +50,7 @@ public class BenchmarkBuilder {
 			? extends IQuerySpecification<? extends ViatraQueryMatcher<? extends IPatternMatch>>, 
 			? extends IPatternMatch, ? extends ViatraQueryMatcher<? extends IPatternMatch>, 
 			? extends IQuerySpecification<? extends ViatraQueryMatcher<? extends IPatternMatch>>, 
-			? extends IMatchProcessor<? extends IPatternMatch>> difference) {
+			? extends Consumer<? extends IPatternMatch>> difference) {
 		Constraint constraint = new Constraint(lowerBound, upperBound, difference); 
 		this.constraints.add(constraint); 
 		return this; 

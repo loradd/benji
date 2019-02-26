@@ -14,6 +14,14 @@ import static org.eclipse.emf.ecore.EcorePackage.Literals.*
 
 class TraceActions {
 	
+	// element <- create (container, containment-reference, type)
+	
+	
+	
+	// insert (element, reference, value)
+	// remove (element, reference, value)
+	// set (element, attribute, value)
+	
 //	// create (eClass)
 //	def static EObject create (EClass eClass) {
 //		EcoreUtil.create(eClass)

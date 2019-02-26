@@ -1,6 +1,7 @@
 package se.mdh.idt.benji.difference.api;
 
-import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
+import java.util.function.Consumer;
+
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
@@ -13,7 +14,7 @@ public class DifferenceBuilder <
 	Precondition extends IQuerySpecification<PreconditionMatcher>, 
 	PostconditionMatch extends IPatternMatch, PostconditionMatcher extends ViatraQueryMatcher<PostconditionMatch>, 
 	Postcondition extends IQuerySpecification<PostconditionMatcher>,
-	Action extends IMatchProcessor<PreconditionMatch>
+	Action extends Consumer<PreconditionMatch>
 > {
 	
 	// properties - name
