@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?><!--
 --><plugin>
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <!-- @generated Trace -->
-    <package class="se.mdh.idt.benji.trace.TracePackage" genModel="model/Trace.xcore" uri="http://www.mdh.se/idt/benji/trace/Trace"/>
-  </extension>
-  <extension id="se.mdh.idt.benji.trace.api.TraceQueries" point="org.eclipse.viatra.query.runtime.queryspecification">
-    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:se.mdh.idt.benji.trace.api.TraceQueries" id="se.mdh.idt.benji.trace.api.TraceQueries">
-      <query-specification fqn="se.mdh.idt.benji.trace.api.initial"/>
-      <query-specification fqn="se.mdh.idt.benji.trace.api.current"/>
-      <query-specification fqn="se.mdh.idt.benji.trace.api.preserved"/>
-      <query-specification fqn="se.mdh.idt.benji.trace.api.created"/>
-      <query-specification fqn="se.mdh.idt.benji.trace.api.deleted"/>
-    </group>
-  </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Trace -->
+      <package
+            uri="http://www.mdh.se/idt/benji/trace/Trace"
+            class="se.mdh.idt.benji.trace.TracePackage"
+            genModel="model/Trace.xcore"/>
+   </extension>
 </plugin>

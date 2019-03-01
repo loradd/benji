@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see se.mdh.idt.benji.trace.TraceFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/GenModel name='Trace' prefix='Trace' modelName='Trace' basePackage='se.mdh.idt.benji'"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel prefix='Trace' modelName='Trace' basePackage='se.mdh.idt.benji'"
  * @generated
  */
 public interface TracePackage extends EPackage {

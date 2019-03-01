@@ -87,8 +87,9 @@ public class Benchmark {
 		designSpaceExplorer.addObjective(Objectives.createDepthHardObjective().withMinDepth(1));
 		SolutionStore solutionStore = new SolutionStore(instances).logSolutionsWhenFound();
 		designSpaceExplorer.setSolutionStore(solutionStore);
-		int depthLimit = this.constraints.stream().mapToInt(constraint -> constraint.upperBound).sum();  
-		IStrategy strategy = Strategies.createDfsStrategy(depthLimit).continueIfHardObjectivesFulfilled();  
+		int maxDepth = this.constraints.stream().mapToInt(constraint -> constraint.upperBound).sum();  
+		IStrategy strategy = Strategies.createDfsStrategy(maxDepth).continueIfHardObjectivesFulfilled();  
+		long startTime = System.nanoTime();
 		designSpaceExplorer.startExploration(strategy);
 		logger.info(designSpaceExplorer.toStringSolutions());
 		Collection<Solution> solutions = designSpaceExplorer.getSolutions();
@@ -119,7 +120,9 @@ public class Benchmark {
 			}
 			solutionTrajectory.undoTransformation();
 		}
-		logger.info(solutions.size()); 
+		logger.info(solutions.size());
+		double elapsedTime = (System.nanoTime() - startTime) * 1.0e-9;
+		logger.info("Elapsed Time: " + elapsedTime + " seconds");
 	}
 	
 	// becnhmark - constraint

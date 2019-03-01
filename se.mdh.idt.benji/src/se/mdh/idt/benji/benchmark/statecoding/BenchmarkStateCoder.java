@@ -79,7 +79,6 @@ public class BenchmarkStateCoder implements IStateCoder {
 	}
 	
 	// create description from pattern match
-	@SuppressWarnings("unchecked")
 	private static String createDescription(IPatternMatch match) {
 		String patternName = match.specification().getFullyQualifiedName(); 
 		List<String> parameterNames = match.parameterNames(); 

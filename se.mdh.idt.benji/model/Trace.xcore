@@ -1,5 +1,5 @@
 @Ecore(name='Trace', nsURI='http://www.mdh.se/idt/benji/trace/Trace')
-@GenModel(name='Trace', prefix='Trace', modelName='Trace')
+@GenModel(prefix='Trace', modelName='Trace')
 package se.mdh.idt.benji.trace
 
 import org.eclipse.emf.ecore.EObject
@@ -15,7 +15,7 @@ class Trace {
 	// container - model
 	container TraceModel[1..1] model opposite traces
 	// reference - initial
-	refers EObject[1..1] initial
+	refers EObject[1..1] initial 
 	// reference - current 
 	refers EObject[1..1] current
 	// attribute - identifier
