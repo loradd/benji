@@ -28,10 +28,6 @@ public interface TraceModel extends EObject {
 	 * The list contents are of type {@link se.mdh.idt.benji.trace.Trace}.
 	 * It is bidirectional and its opposite is '{@link se.mdh.idt.benji.trace.Trace#getModel <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Traces</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Traces</em>' containment reference list.
 	 * @see se.mdh.idt.benji.trace.TracePackage#getTraceModel_Traces()

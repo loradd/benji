@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare">
+  <matchedResources leftURI="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/input/bpmn2/bpmn2_1.xmi" rightURI="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/output/bpmn2/f30f9390-8205-4f23-8332-f1e30ec845cc/bpmn2_1.xmi"/>
+  <matches>
+    <submatches>
+      <left href="../../../benji/input/bpmn2/bpmn2_1.xmi#StartEvent_1"/>
+      <right href="../../../benji/output/bpmn2/f30f9390-8205-4f23-8332-f1e30ec845cc/bpmn2_1.xmi#StartEvent_1"/>
+    </submatches>
+    <submatches>
+      <left href="../../../benji/input/bpmn2/bpmn2_1.xmi#EndEvent_1"/>
+      <right href="../../../benji/output/bpmn2/f30f9390-8205-4f23-8332-f1e30ec845cc/bpmn2_1.xmi#EndEvent_1"/>
+    </submatches>
+    <submatches>
+      <differences xsi:type="compare:AttributeChange" kind="CHANGE">
+        <attribute href="http://www.mdh.se/idt/benji/examples/metamodels/bpmn2#//Activity/name"/>
+      </differences>
+      <left href="../../../benji/input/bpmn2/bpmn2_1.xmi#Task_1"/>
+      <right href="../../../benji/output/bpmn2/f30f9390-8205-4f23-8332-f1e30ec845cc/bpmn2_1.xmi#Task_1"/>
+    </submatches>
+    <submatches>
+      <left href="../../../benji/input/bpmn2/bpmn2_1.xmi#SequenceFlow_1"/>
+      <right href="../../../benji/output/bpmn2/f30f9390-8205-4f23-8332-f1e30ec845cc/bpmn2_1.xmi#SequenceFlow_1"/>
+    </submatches>
+    <submatches>
+      <left href="../../../benji/input/bpmn2/bpmn2_1.xmi#SequenceFlow_2"/>
+      <right href="../../../benji/output/bpmn2/f30f9390-8205-4f23-8332-f1e30ec845cc/bpmn2_1.xmi#SequenceFlow_2"/>
+    </submatches>
+    <left href="../../../benji/input/bpmn2/bpmn2_1.xmi#process_1"/>
+    <right href="../../../benji/output/bpmn2/f30f9390-8205-4f23-8332-f1e30ec845cc/bpmn2_1.xmi#process_1"/>
+  </matches>
+</compare:Comparison>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare">
+  <matchedResources leftURI="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/input/ecore/ecore_3.xmi" rightURI="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/output/ecore/eb3d49ed-9193-4806-ad8b-3c01d6b7b561/ecore_3.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <differences xsi:type="compare:ReferenceChange" kind="CHANGE">
+          <reference href="http://www.mdh.se/idt/benji/examples/metamodels/ecore#//Reference/type"/>
+          <value href="../../../benji/input/ecore/ecore_3.xmi#//@classes.1"/>
+        </differences>
+        <left href="../../../benji/input/ecore/ecore_3.xmi#//@classes.0/@references.0"/>
+        <right href="../../../benji/output/ecore/eb3d49ed-9193-4806-ad8b-3c01d6b7b561/ecore_3.xmi#//@classes.0/@references.0"/>
+      </submatches>
+      <left href="../../../benji/input/ecore/ecore_3.xmi#//@classes.0"/>
+      <right href="../../../benji/output/ecore/eb3d49ed-9193-4806-ad8b-3c01d6b7b561/ecore_3.xmi#//@classes.0"/>
+    </submatches>
+    <submatches>
+      <left href="../../../benji/input/ecore/ecore_3.xmi#//@classes.1"/>
+      <right href="../../../benji/output/ecore/eb3d49ed-9193-4806-ad8b-3c01d6b7b561/ecore_3.xmi#//@classes.1"/>
+    </submatches>
+    <submatches>
+      <left href="../../../benji/input/ecore/ecore_3.xmi#//@classes.2"/>
+      <right href="../../../benji/output/ecore/eb3d49ed-9193-4806-ad8b-3c01d6b7b561/ecore_3.xmi#//@classes.2"/>
+    </submatches>
+    <left href="../../../benji/input/ecore/ecore_3.xmi#/"/>
+    <right href="../../../benji/output/ecore/eb3d49ed-9193-4806-ad8b-3c01d6b7b561/ecore_3.xmi#/"/>
+  </matches>
+</compare:Comparison>

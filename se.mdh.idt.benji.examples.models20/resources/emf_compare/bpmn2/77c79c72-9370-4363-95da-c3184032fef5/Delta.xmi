@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<change:ChangeDescription xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:change="http://www.eclipse.org/emf/2003/Change">
+  <objectChanges>
+    <key href="../../../benji/input/bpmn2/bpmn2_2.xmi#//@flowElements.0"/>
+    <value featureName="flowElements" set="false"/>
+  </objectChanges>
+  <objectChanges>
+    <key href="../../../benji/input/bpmn2/bpmn2_2.xmi#Task_1"/>
+    <value featureName="name" dataValue="doSomething"/>
+  </objectChanges>
+</change:ChangeDescription>

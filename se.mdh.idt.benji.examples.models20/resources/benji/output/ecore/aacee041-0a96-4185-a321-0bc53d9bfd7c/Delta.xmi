@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<change:ChangeDescription xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:change="http://www.eclipse.org/emf/2003/Change" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <objectChanges>
+    <key href="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/input/ecore/ecore_1.xmi#//DomesticAnimal"/>
+    <value featureName="name" dataValue="Pet"/>
+    <value featureName="ePackage">
+      <referenceValue href="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/input/ecore/ecore_1.xmi#/"/>
+    </value>
+  </objectChanges>
+  <objectChanges>
+    <key href="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/input/ecore/ecore_1.xmi#//DomesticAnimal/nickname"/>
+    <value featureName="name" dataValue="moniker"/>
+  </objectChanges>
+  <objectChanges>
+    <key href="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/input/ecore/ecore_1.xmi#/"/>
+    <value featureName="eClassifiers" set="false"/>
+    <value featureName="eSubpackages">
+      <listChanges index="0" referenceValues="//@objectsToAttach.0"/>
+    </value>
+  </objectChanges>
+  <objectChanges key="//@objectsToAttach.0">
+    <value featureName="eClassifiers">
+      <listChanges index="0">
+        <referenceValues href="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/input/ecore/ecore_1.xmi#//DomesticAnimal"/>
+      </listChanges>
+    </value>
+  </objectChanges>
+  <objectsToAttach xsi:type="ecore:EPackage" name="shop"/>
+</change:ChangeDescription>

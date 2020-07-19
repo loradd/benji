@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare">
+  <matchedResources leftURI="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/input/bpmn2/bpmn2_2.xmi" rightURI="file:/Users/lai02/development/benji/se.mdh.idt.benji.examples.models20/resources/benji/output/bpmn2/77c79c72-9370-4363-95da-c3184032fef5/bpmn2_2.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <left href="../../../benji/input/bpmn2/bpmn2_2.xmi#Task_1"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange">
+        <reference href="http://www.mdh.se/idt/benji/examples/metamodels/bpmn2#//FlowElementsContainer/flowElements"/>
+        <value href="../../../benji/input/bpmn2/bpmn2_2.xmi#Task_1"/>
+      </differences>
+      <left href="../../../benji/input/bpmn2/bpmn2_2.xmi#//@flowElements.0"/>
+      <right href="../../../benji/output/bpmn2/77c79c72-9370-4363-95da-c3184032fef5/bpmn2_2.xmi#//@flowElements.0"/>
+    </submatches>
+    <submatches>
+      <submatches>
+        <differences xsi:type="compare:AttributeChange" kind="CHANGE">
+          <attribute href="http://www.mdh.se/idt/benji/examples/metamodels/bpmn2#//Activity/name"/>
+        </differences>
+        <left href="../../../benji/input/bpmn2/bpmn2_2.xmi#Task_1"/>
+        <right href="../../../benji/output/bpmn2/77c79c72-9370-4363-95da-c3184032fef5/bpmn2_2.xmi#Task_1"/>
+      </submatches>
+      <left href="../../../benji/input/bpmn2/bpmn2_2.xmi#//@flowElements.1"/>
+      <right href="../../../benji/output/bpmn2/77c79c72-9370-4363-95da-c3184032fef5/bpmn2_2.xmi#//@flowElements.1"/>
+    </submatches>
+    <left href="../../../benji/input/bpmn2/bpmn2_2.xmi#process_1"/>
+    <right href="../../../benji/output/bpmn2/77c79c72-9370-4363-95da-c3184032fef5/bpmn2_2.xmi#process_1"/>
+  </matches>
+</compare:Comparison>

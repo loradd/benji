@@ -1,0 +1,384 @@
+package se.mdh.idt.benji.examples.models20.ecore
+
+import "http://www.mdh.se/idt/benji/trace/Trace"
+import "http://www.eclipse.org/emf/2002/Ecore"
+import "http://www.mdh.se/idt/benji/examples/metamodels/ecore"
+
+////////////////////////////////////////////////////////////////////////////
+// Move Element for Ecore - Precondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern MoveElementPrecondition(
+	ePackage: Trace, eClass: Trace	
+) {
+	
+	Trace.initial(eClass, eInitialClass);
+	Trace.current(eClass, eCurrentClass);
+	EClass.name(eInitialClass, eClassName);
+	EClass.name(eCurrentClass, eClassName);
+	eClassName == "DomesticAnimal";
+	
+	Trace.initial(ePackage, eInitialPackage);
+	Trace.current(ePackage, eCurrentPackage);
+	EPackage.name(eInitialPackage, ePackageName);
+	EPackage.name(eCurrentPackage, ePackageName);
+	ePackageName == "de";
+	EPackage.eClassifiers(eInitialPackage, eInitialClass);
+	EPackage.eClassifiers(eCurrentPackage, eCurrentClass);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Move Element - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern MoveElementPostcondition(
+	ePackage: Trace, eSubPackage: Trace, eClass: Trace
+) {
+	
+	Trace.initial(eClass, eInitialClass);
+	Trace.current(eClass, eCurrentClass);
+	EClass.name(eInitialClass, eClassName);
+	EClass.name(eCurrentClass, eClassName);
+	eClassName == "DomesticAnimal";
+	
+	Trace.initial(ePackage, eInitialPackage);
+	Trace.current(ePackage, eCurrentPackage);
+	EPackage.name(eInitialPackage, ePackageName);
+	EPackage.name(eCurrentPackage, ePackageName);
+	ePackageName == "de";
+	EPackage.eClassifiers(eInitialPackage, eInitialClass);
+	neg EPackage.eClassifiers(eCurrentPackage, eCurrentClass);
+	
+	neg Trace.initial(eSubPackage, _eInitialSubPackage);
+	Trace.current(eSubPackage, eCurrentSubPackage);
+	EPackage.name(eCurrentSubPackage, "shop");
+	EPackage.eClassifiers(eCurrentSubPackage, eCurrentClass);
+	EPackage.eSuperPackage(eCurrentSubPackage, eCurrentPackage);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Rename Element - Precondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern RenameElementPrecondition(
+	eClass: Trace, eAttribute: Trace
+) {
+	
+	Trace.initial(eAttribute, eInitialAttribute);
+	Trace.current(eAttribute, eCurrentAttribute);
+	EAttribute.name(eInitialAttribute, eAttributeName);
+	EAttribute.name(eCurrentAttribute, eAttributeName);
+	eAttributeName == "nickname";
+	
+	Trace.initial(eClass, eInitialClass);
+	Trace.current(eClass, eCurrentClass);
+	EClass.name(eInitialClass, eClassName);
+	EClass.name(eCurrentClass, eClassName);
+	eClassName == "DomesticAnimal";
+	EClass.eStructuralFeatures(eInitialClass, eInitialAttribute);
+	EClass.eStructuralFeatures(eCurrentClass, eCurrentAttribute);
+		
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Rename Element - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern RenameElementPostcondition(
+	eClass: Trace, eAttribute: Trace
+) {
+	
+	Trace.initial(eAttribute, eInitialAttribute);
+	Trace.current(eAttribute, eCurrentAttribute);
+	EAttribute.name(eInitialAttribute, "nickname");
+	EAttribute.name(eCurrentAttribute, "moniker");
+	
+	Trace.initial(eClass, eInitialClass);
+	Trace.current(eClass, eCurrentClass);
+	EClass.name(eInitialClass, "DomesticAnimal");
+	EClass.name(eCurrentClass, "Pet");
+	EClass.eStructuralFeatures(eInitialClass, eInitialAttribute);
+	EClass.eStructuralFeatures(eCurrentClass, eCurrentAttribute);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Move Renamed Element - Precondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern MoveRenamedElementPrecondition(
+	ePackage: Trace, eClass: Trace, eAttribute: Trace
+) {
+	
+	Trace.initial(eAttribute, eInitialAttribute);
+	Trace.current(eAttribute, eCurrentAttribute);
+	EAttribute.name(eInitialAttribute, eAttributeName);
+	EAttribute.name(eCurrentAttribute, eAttributeName);
+	eAttributeName == "nickname";
+	
+	Trace.initial(eClass, eInitialClass);
+	Trace.current(eClass, eCurrentClass);
+	EClass.name(eInitialClass, eClassName);
+	EClass.name(eCurrentClass, eClassName);
+	eClassName == "DomesticAnimal";
+	EClass.eStructuralFeatures(eInitialClass, eInitialAttribute);
+	EClass.eStructuralFeatures(eCurrentClass, eCurrentAttribute);
+	
+	Trace.initial(ePackage, eInitialPackage);
+	Trace.current(ePackage, eCurrentPackage);
+	EPackage.name(eInitialPackage, ePackageName);
+	EPackage.name(eCurrentPackage, ePackageName);
+	ePackageName == "de";
+	EPackage.eClassifiers(eInitialPackage, eInitialClass);
+	EPackage.eClassifiers(eCurrentPackage, eCurrentClass);
+	
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Move Renamed Element - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern MoveRenamedElementPostcondition(
+	ePackage: Trace, eSubPackage: Trace, eClass: Trace, eAttribute: Trace
+) {
+	
+	Trace.initial(eAttribute, eInitialAttribute);
+	Trace.current(eAttribute, eCurrentAttribute);
+	EAttribute.name(eInitialAttribute, "nickname");
+	EAttribute.name(eCurrentAttribute, "moniker");
+	
+	Trace.initial(eClass, eInitialClass);
+	Trace.current(eClass, eCurrentClass);
+	EClass.name(eInitialClass, "DomesticAnimal");
+	EClass.name(eCurrentClass, "Pet");
+	EClass.eStructuralFeatures(eInitialClass, eInitialAttribute);
+	EClass.eStructuralFeatures(eCurrentClass, eCurrentAttribute);
+	
+	Trace.initial(ePackage, eInitialPackage);
+	Trace.current(ePackage, eCurrentPackage);
+	EPackage.name(eInitialPackage, ePackageName);
+	EPackage.name(eCurrentPackage, ePackageName);
+	ePackageName == "de";
+	EPackage.eClassifiers(eInitialPackage, eInitialClass);
+	neg EPackage.eClassifiers(eCurrentPackage, eCurrentClass);
+	
+	neg Trace.initial(eSubPackage, _eInitialSubPackage);
+	Trace.current(eSubPackage, eCurrentSubPackage);
+	EPackage.name(eCurrentSubPackage, "shop");
+	EPackage.eClassifiers(eCurrentSubPackage, eCurrentClass);
+	EPackage.eSuperPackage(eCurrentSubPackage, eCurrentPackage);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Exchange Location of Elements - Precondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern ExchangeLocationOfElementsPrecondition(
+	eLeftPackage: Trace, eRightPackage: Trace,
+	eLeftClass: Trace, eRightClass: Trace
+) {
+	
+	Trace.initial(eLeftClass, eInitialLeftClass);
+	Trace.current(eLeftClass, eCurrentLeftClass);
+	EClass.name(eInitialLeftClass, eLeftClassName);
+	EClass.name(eCurrentLeftClass, eLeftClassName);
+	eLeftClassName == "DomesticAnimal";
+	
+	Trace.initial(eRightClass, eInitialRightClass);
+	Trace.current(eRightClass, eCurrentRightClass);
+	EClass.name(eInitialRightClass, eRightClassName);
+	EClass.name(eCurrentRightClass, eRightClassName);
+	eRightClassName == "DomesticAnimalNew";
+	
+	Trace.initial(eLeftPackage, eInitialLeftPackage);
+	Trace.current(eLeftPackage, eCurrentLeftPackage);
+	EPackage.name(eInitialLeftPackage, eLeftPackageName);
+	EPackage.name(eCurrentLeftPackage, eLeftPackageName);
+	eLeftPackageName == "shop";
+	EPackage.eClassifiers(eInitialLeftPackage, eInitialLeftClass);
+	EPackage.eClassifiers(eCurrentLeftPackage, eCurrentLeftClass);
+	
+	Trace.initial(eRightPackage, eInitialRightPackage);
+	Trace.current(eRightPackage, eCurrentRightPackage);
+	EPackage.name(eInitialRightPackage, eRightPackageName);
+	EPackage.name(eCurrentRightPackage, eRightPackageName);
+	eRightPackageName == "core";
+	EPackage.eClassifiers(eInitialRightPackage, eInitialRightClass);
+	EPackage.eClassifiers(eCurrentRightPackage, eCurrentRightClass);
+	
+	Trace.initial(eRootPackage, eInitialRootPackage);
+	Trace.current(eRootPackage, eCurrentRootPackage);
+	EPackage.name(eInitialRootPackage, eRootPackageName);
+	EPackage.name(eCurrentRootPackage, eRootPackageName);
+	eRootPackageName == "de";
+	EPackage.eSubpackages(eInitialRootPackage, eInitialLeftPackage);
+	EPackage.eSubpackages(eCurrentRootPackage, eCurrentLeftPackage);
+	EPackage.eSubpackages(eInitialRootPackage, eInitialRightPackage);
+	EPackage.eSubpackages(eCurrentRootPackage, eCurrentRightPackage);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Exchange Location of Elements - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern ExchangeLocationOfElementsPostcondition(
+	eLeftPackage: Trace, eRightPackage: Trace,
+	eLeftClass: Trace, eRightClass: Trace
+) {
+	
+	Trace.initial(eLeftClass, eInitialLeftClass);
+	Trace.current(eLeftClass, eCurrentLeftClass);
+	EClass.name(eInitialLeftClass, eLeftClassName);
+	EClass.name(eCurrentLeftClass, eLeftClassName);
+	eLeftClassName == "DomesticAnimal";
+	
+	Trace.initial(eRightClass, eInitialRightClass);
+	Trace.current(eRightClass, eCurrentRightClass);
+	EClass.name(eInitialRightClass, eRightClassName);
+	EClass.name(eCurrentRightClass, eRightClassName);
+	eRightClassName == "DomesticAnimalNew";
+	
+	Trace.initial(eLeftPackage, eInitialLeftPackage);
+	Trace.current(eLeftPackage, eCurrentLeftPackage);
+	EPackage.name(eInitialLeftPackage, eLeftPackageName);
+	EPackage.name(eCurrentLeftPackage, eLeftPackageName);
+	eLeftPackageName == "shop";
+	EPackage.eClassifiers(eInitialLeftPackage, eInitialLeftClass);
+	EPackage.eClassifiers(eCurrentLeftPackage, eCurrentRightClass);
+	
+	Trace.initial(eRightPackage, eInitialRightPackage);
+	Trace.current(eRightPackage, eCurrentRightPackage);
+	EPackage.name(eInitialRightPackage, eRightPackageName);
+	EPackage.name(eCurrentRightPackage, eRightPackageName);
+	eRightPackageName == "core";
+	EPackage.eClassifiers(eInitialRightPackage, eInitialRightClass);
+	EPackage.eClassifiers(eCurrentRightPackage, eCurrentLeftClass);
+	
+	Trace.initial(eRootPackage, eInitialRootPackage);
+	Trace.current(eRootPackage, eCurrentRootPackage);
+	EPackage.name(eInitialRootPackage, eRootPackageName);
+	EPackage.name(eCurrentRootPackage, eRootPackageName);
+	eRootPackageName == "de";
+	EPackage.eSubpackages(eInitialRootPackage, eInitialLeftPackage);
+	EPackage.eSubpackages(eCurrentRootPackage, eCurrentLeftPackage);
+	EPackage.eSubpackages(eInitialRootPackage, eInitialRightPackage);
+	EPackage.eSubpackages(eCurrentRootPackage, eCurrentRightPackage);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Update Reference Target - Precondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern UpdateReferenceTargetPrecondition(
+	ePackage: Trace, 
+	eReference: Trace, 
+	eReferenceOwner: Trace, 
+	eSourceReferenceType: Trace, 
+	eTargetReferenceType: Trace 
+) {
+	
+	Trace.initial(eSourceReferenceType, eInitialSourceReferenceType);
+	Trace.current(eSourceReferenceType, eCurrentSourceReferenceType);
+	Class.name(eInitialSourceReferenceType, eSourceReferenceTypeName);
+	Class.name(eCurrentSourceReferenceType, eSourceReferenceTypeName);
+	eSourceReferenceTypeName == "Owner";
+	
+	Trace.initial(eTargetReferenceType, eInitialTargetReferenceType);
+	Trace.current(eTargetReferenceType, eCurrentTargetReferenceType);
+	Class.name(eInitialTargetReferenceType, eTargetReferenceTypeName);
+	Class.name(eCurrentTargetReferenceType, eTargetReferenceTypeName);
+	eTargetReferenceTypeName == "Person";
+	
+	Trace.initial(eReference, eInitialReference);
+	Trace.current(eReference, eCurrentReference);
+	Reference(eInitialReference);
+	Reference(eCurrentReference);
+	Reference.name(eInitialReference, eReferenceName);
+	Reference.name(eCurrentReference, eReferenceName);
+	eReferenceName == "owner";
+	Reference.type(eInitialReference, eInitialSourceReferenceType);
+	Reference.type(eCurrentReference, eCurrentSourceReferenceType);
+	
+	Trace.initial(eReferenceOwner, eInitialReferenceOwner);
+	Trace.current(eReferenceOwner, eCurrentReferenceOwner);
+	Class.name(eInitialReferenceOwner, eReferenceOwnerName);
+	Class.name(eCurrentReferenceOwner, eReferenceOwnerName);
+	eReferenceOwnerName == "DomesticAnimal";
+	Class.references(eInitialReferenceOwner, eInitialReference);
+	Class.references(eCurrentReferenceOwner, eCurrentReference);
+	
+	Trace.initial(ePackage, eInitialPackage);
+	Trace.current(ePackage, eCurrentPackage);
+	Package.name(eInitialPackage, ePackageName);
+	Package.name(eCurrentPackage, ePackageName);
+	ePackageName == "de";
+	Package.classes(eInitialPackage, eInitialSourceReferenceType);
+	Package.classes(eCurrentPackage, eCurrentSourceReferenceType);
+	Package.classes(eInitialPackage, eInitialTargetReferenceType);
+	Package.classes(eCurrentPackage, eCurrentTargetReferenceType);
+	Package.classes(eInitialPackage, eInitialReferenceOwner);
+	Package.classes(eCurrentPackage, eCurrentReferenceOwner);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Update Reference Target - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern UpdateReferenceTargetPostcondition(
+	ePackage: Trace, 
+	eReference: Trace, 
+	eReferenceOwner: Trace, 
+	eSourceReferenceType: Trace, 
+	eTargetReferenceType: Trace 
+) {
+	
+	Trace.initial(eSourceReferenceType, eInitialSourceReferenceType);
+	Trace.current(eSourceReferenceType, eCurrentSourceReferenceType);
+	Class.name(eInitialSourceReferenceType, eSourceReferenceTypeName);
+	Class.name(eCurrentSourceReferenceType, eSourceReferenceTypeName);
+	eSourceReferenceTypeName == "Owner";
+	
+	Trace.initial(eTargetReferenceType, eInitialTargetReferenceType);
+	Trace.current(eTargetReferenceType, eCurrentTargetReferenceType);
+	Class.name(eInitialTargetReferenceType, eTargetReferenceTypeName);
+	Class.name(eCurrentTargetReferenceType, eTargetReferenceTypeName);
+	eTargetReferenceTypeName == "Person";
+	
+	Trace.initial(eReference, eInitialReference);
+	Trace.current(eReference, eCurrentReference);
+	Reference(eInitialReference);
+	Reference(eCurrentReference);
+	Reference.name(eInitialReference, eReferenceName);
+	Reference.name(eCurrentReference, eReferenceName);
+	eReferenceName == "owner";
+	Reference.type(eInitialReference, eInitialSourceReferenceType);
+	Reference.type(eCurrentReference, eCurrentTargetReferenceType);
+	
+	Trace.initial(eReferenceOwner, eInitialReferenceOwner);
+	Trace.current(eReferenceOwner, eCurrentReferenceOwner);
+	Class.name(eInitialReferenceOwner, eReferenceOwnerName);
+	Class.name(eCurrentReferenceOwner, eReferenceOwnerName);
+	eReferenceOwnerName == "DomesticAnimal";
+	Class.references(eInitialReferenceOwner, eInitialReference);
+	Class.references(eCurrentReferenceOwner, eCurrentReference);
+	
+	Trace.initial(ePackage, eInitialPackage);
+	Trace.current(ePackage, eCurrentPackage);
+	Package.name(eInitialPackage, ePackageName);
+	Package.name(eCurrentPackage, ePackageName);
+	ePackageName == "de";
+	Package.classes(eInitialPackage, eInitialSourceReferenceType);
+	Package.classes(eCurrentPackage, eCurrentSourceReferenceType);
+	Package.classes(eInitialPackage, eInitialTargetReferenceType);
+	Package.classes(eCurrentPackage, eCurrentTargetReferenceType);
+	Package.classes(eInitialPackage, eInitialReferenceOwner);
+	Package.classes(eCurrentPackage, eCurrentReferenceOwner);
+	
+}

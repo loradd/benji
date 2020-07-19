@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:Process
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bpmn2="http://www.mdh.se/idt/benji/examples/metamodels/bpmn2"
+    xsi:schemaLocation="http://www.mdh.se/idt/benji/examples/metamodels/bpmn2 ../../../../se.mdh.idt.benji.examples.metamodels.bpmn2/model/bpmn2.xcore#/EPackage"
+    id="process_1">
+  <flowElements xsi:type="bpmn2:SubProcess" name="Left">
+    <flowElements xsi:type="bpmn2:Task" id="Task_1" name="doSomething"/>
+  </flowElements>
+  <flowElements xsi:type="bpmn2:SubProcess" name="Right">
+    <flowElements xsi:type="bpmn2:Task" id="Task_1" name="doSomethingNew"/>
+  </flowElements>
+</bpmn2:Process>

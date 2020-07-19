@@ -28,10 +28,6 @@ public interface Trace extends EObject {
 	 * Returns the value of the '<em><b>Model</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link se.mdh.idt.benji.trace.TraceModel#getTraces <em>Traces</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Model</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' container reference.
 	 * @see #setModel(TraceModel)
@@ -55,10 +51,6 @@ public interface Trace extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Initial</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Initial</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial</em>' reference.
 	 * @see #setInitial(EObject)
@@ -81,10 +73,6 @@ public interface Trace extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Current</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Current</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Current</em>' reference.
 	 * @see #setCurrent(EObject)
@@ -107,10 +95,6 @@ public interface Trace extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
