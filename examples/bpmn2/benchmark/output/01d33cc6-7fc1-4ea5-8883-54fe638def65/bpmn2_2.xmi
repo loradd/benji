@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<bpmn2:Process xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.mdh.se/idt/benji/examples/bpmn2" id="process_1">
-  <flowElements xsi:type="bpmn2:SubProcess" name="Left">
-    <flowElements xsi:type="bpmn2:Task" id="Task_1" name="doSomethingNew"/>
-  </flowElements>
-  <flowElements xsi:type="bpmn2:SubProcess" name="Right">
-    <flowElements xsi:type="bpmn2:Task" id="Task_1" name="doSomething"/>
-  </flowElements>
-</bpmn2:Process>
