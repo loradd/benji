@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?><!--
+--><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <!-- @generated bpmn2 -->
+    <package class="se.mdh.idt.benji.examples.bpmn2.Bpmn2Package" genModel="model/bpmn2.xcore" uri="http://www.mdh.se/idt/benji/examples/bpmn2"/>
+  </extension>
+  <extension id="se.mdh.idt.benji.examples.bpmn2.benchmark.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:se.mdh.idt.benji.examples.bpmn2.benchmark.Queries" id="se.mdh.idt.benji.examples.bpmn2.benchmark.Queries">
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.MoveElementPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.MoveElementPostcondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.RenameElementPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.RenameElementPostcondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.MoveRenamedElementPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.MoveRenamedElementPostcondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.ExchangeLocationOfElementsPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.ExchangeLocationOfElementsPostcondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.UpdateReferenceTargetPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.bpmn2.benchmark.UpdateReferenceTargetPostcondition"/>
+    </group>
+  </extension>
+</plugin>

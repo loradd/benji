@@ -1,0 +1,36 @@
+@Ecore(name = "bpmn2", nsURI = "http://www.mdh.se/idt/benji/examples/bpmn2")
+@GenModel(modelName = "bpmn2", modelDirectory = "se.mdh.idt.benji.examples.bpmn2/src")
+package se.mdh.idt.benji.examples.bpmn2
+
+abstract class BaseElement {
+	id String ^id
+}
+
+abstract class FlowElementsContainer extends BaseElement {
+	contains FlowElement[*] flowElements
+}
+
+class Process extends FlowElementsContainer {}
+
+abstract class FlowElement extends BaseElement {}
+
+class SequenceFlow extends FlowElement {
+	refers FlowNode sourceRef opposite outgoing
+	refers FlowNode targetRef opposite incoming
+}
+
+abstract class FlowNode extends FlowElement {
+	refers SequenceFlow[*] outgoing opposite sourceRef
+	refers SequenceFlow[*] incoming opposite targetRef
+}
+
+abstract class Event extends FlowNode {}
+class StartEvent extends Event {}
+class EndEvent extends Event {}
+
+abstract class Activity extends FlowNode {
+	String name
+}
+
+class Task extends Activity {}
+class SubProcess extends Activity, FlowElementsContainer {}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<change:ChangeDescription xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:change="http://www.eclipse.org/emf/2003/Change">
+  <objectChanges>
+    <key href="file:/Users/lai02/development/benji/examples/ecore/benchmark/input/ecore_3.xmi#//@classes.0/@references.0"/>
+    <value featureName="type">
+      <referenceValue href="file:/Users/lai02/development/benji/examples/ecore/benchmark/input/ecore_3.xmi#//@classes.2"/>
+    </value>
+  </objectChanges>
+</change:ChangeDescription>

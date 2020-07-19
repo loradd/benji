@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare">
+  <matchedResources leftURI="file:/Users/lai02/development/benji/examples/ecore/benchmark/input/ecore_2.xmi" rightURI="file:/Users/lai02/development/benji/examples/ecore/benchmark/output/3c7a4293-32b6-405b-83f8-32989ad27979/ecore_2.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <submatches>
+          <left href="../../../input/ecore_2.xmi#//core/DomesticAnimalNew/nickname"/>
+          <right href="../ecore_2.xmi#//shop/DomesticAnimalNew/nickname"/>
+        </submatches>
+        <submatches>
+          <left href="../../../input/ecore_2.xmi#//core/DomesticAnimalNew/species"/>
+          <right href="../ecore_2.xmi#//shop/DomesticAnimalNew/species"/>
+        </submatches>
+        <left href="../../../input/ecore_2.xmi#//core/DomesticAnimalNew"/>
+        <right href="../ecore_2.xmi#//shop/DomesticAnimalNew"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange" kind="MOVE">
+        <reference href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+        <value href="../../../input/ecore_2.xmi#//core/DomesticAnimalNew"/>
+      </differences>
+      <left href="../../../input/ecore_2.xmi#//core"/>
+      <right href="../ecore_2.xmi#//core"/>
+    </submatches>
+    <submatches>
+      <submatches>
+        <submatches>
+          <left href="../../../input/ecore_2.xmi#//shop/DomesticAnimal/nickname"/>
+          <right href="../ecore_2.xmi#//core/DomesticAnimal/nickname"/>
+        </submatches>
+        <submatches>
+          <left href="../../../input/ecore_2.xmi#//shop/DomesticAnimal/species"/>
+          <right href="../ecore_2.xmi#//core/DomesticAnimal/species"/>
+        </submatches>
+        <left href="../../../input/ecore_2.xmi#//shop/DomesticAnimal"/>
+        <right href="../ecore_2.xmi#//core/DomesticAnimal"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange" kind="MOVE">
+        <reference href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+        <value href="../../../input/ecore_2.xmi#//shop/DomesticAnimal"/>
+      </differences>
+      <left href="../../../input/ecore_2.xmi#//shop"/>
+      <right href="../ecore_2.xmi#//shop"/>
+    </submatches>
+    <left href="../../../input/ecore_2.xmi#/"/>
+    <right href="../ecore_2.xmi#/"/>
+  </matches>
+</compare:Comparison>

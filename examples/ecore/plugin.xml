@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?><!--
+--><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <!-- @generated ecore -->
+    <package class="se.mdh.idt.benji.examples.ecore.EcorePackage" genModel="model/ecore.xcore" uri="http://www.mdh.se/idt/benji/examples/ecore"/>
+  </extension>
+  <extension id="se.mdh.idt.benji.examples.ecore.benchmark.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:se.mdh.idt.benji.examples.ecore.benchmark.Queries" id="se.mdh.idt.benji.examples.ecore.benchmark.Queries">
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.MoveElementPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.MoveElementPostcondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.RenameElementPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.RenameElementPostcondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.MoveRenamedElementPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.MoveRenamedElementPostcondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.ExchangeLocationOfElementsPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.ExchangeLocationOfElementsPostcondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.UpdateReferenceTargetPrecondition"/>
+      <query-specification fqn="se.mdh.idt.benji.examples.ecore.benchmark.UpdateReferenceTargetPostcondition"/>
+    </group>
+  </extension>
+</plugin>

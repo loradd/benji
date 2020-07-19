@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare">
+  <matchedResources leftURI="file:/Users/lai02/development/benji/examples/bpmn2/benchmark/input/bpmn2_2.xmi" rightURI="file:/Users/lai02/development/benji/examples/bpmn2/benchmark/output/01d33cc6-7fc1-4ea5-8883-54fe638def65/bpmn2_2.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <left href="../../../input/bpmn2_2.xmi#Task_1"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange">
+        <reference href="http://www.mdh.se/idt/benji/examples/bpmn2#//FlowElementsContainer/flowElements"/>
+        <value href="../../../input/bpmn2_2.xmi#Task_1"/>
+      </differences>
+      <left href="../../../input/bpmn2_2.xmi#//@flowElements.0"/>
+      <right href="../bpmn2_2.xmi#//@flowElements.0"/>
+    </submatches>
+    <submatches>
+      <submatches>
+        <differences xsi:type="compare:AttributeChange" kind="CHANGE">
+          <attribute href="http://www.mdh.se/idt/benji/examples/bpmn2#//Activity/name"/>
+        </differences>
+        <left href="../../../input/bpmn2_2.xmi#Task_1"/>
+        <right href="../bpmn2_2.xmi#Task_1"/>
+      </submatches>
+      <left href="../../../input/bpmn2_2.xmi#//@flowElements.1"/>
+      <right href="../bpmn2_2.xmi#//@flowElements.1"/>
+    </submatches>
+    <left href="../../../input/bpmn2_2.xmi#process_1"/>
+    <right href="../bpmn2_2.xmi#process_1"/>
+  </matches>
+</compare:Comparison>

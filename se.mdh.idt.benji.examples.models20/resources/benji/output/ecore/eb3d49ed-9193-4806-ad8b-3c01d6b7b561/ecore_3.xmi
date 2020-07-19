@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<ecore:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.mdh.se/idt/benji/examples/metamodels/ecore" name="de">
-  <classes name="DomesticAnimal">
-    <references name="owner" type="//@classes.2"/>
-  </classes>
-  <classes name="Owner"/>
-  <classes name="Person"/>
-</ecore:Package>

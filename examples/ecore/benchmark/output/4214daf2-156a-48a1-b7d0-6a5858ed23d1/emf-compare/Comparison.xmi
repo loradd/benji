@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare">
+  <matchedResources leftURI="file:/Users/lai02/development/benji/examples/ecore/benchmark/input/ecore_1.xmi" rightURI="file:/Users/lai02/development/benji/examples/ecore/benchmark/output/4214daf2-156a-48a1-b7d0-6a5858ed23d1/ecore_1.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.0/@differences.0" kind="CHANGE">
+          <reference href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
+          <value href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </differences>
+        <left href="../../../input/ecore_1.xmi#//DomesticAnimal/nickname"/>
+      </submatches>
+      <submatches>
+        <left href="../../../input/ecore_1.xmi#//DomesticAnimal/species"/>
+        <right href="../ecore_1.xmi#//Pet/species"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@differences.0" requiredBy="//@matches.0/@submatches.0/@submatches.0/@differences.0">
+        <reference href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+        <value href="../../../input/ecore_1.xmi#//DomesticAnimal/nickname"/>
+      </differences>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@differences.0" requiredBy="//@matches.0/@differences.1" kind="MOVE">
+        <reference href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+        <value href="../../../input/ecore_1.xmi#//DomesticAnimal/species"/>
+      </differences>
+      <left href="../../../input/ecore_1.xmi#//DomesticAnimal"/>
+    </submatches>
+    <submatches>
+      <submatches>
+        <differences xsi:type="compare:ReferenceChange" requiredBy="//@matches.0/@submatches.1/@differences.0" kind="CHANGE">
+          <reference href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
+          <value href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </differences>
+        <right href="../ecore_1.xmi#//Pet/moniker"/>
+      </submatches>
+      <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.1/@submatches.0/@differences.0" requiredBy="//@matches.0/@differences.1" kind="DELETE">
+        <reference href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+        <value href="../ecore_1.xmi#//Pet/moniker"/>
+      </differences>
+      <right href="../ecore_1.xmi#//Pet"/>
+    </submatches>
+    <differences xsi:type="compare:ReferenceChange" requiredBy="//@matches.0/@submatches.0/@differences.0 //@matches.0/@submatches.0/@differences.1">
+      <reference href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      <value href="../../../input/ecore_1.xmi#//DomesticAnimal"/>
+    </differences>
+    <differences xsi:type="compare:ReferenceChange" requires="//@matches.0/@submatches.1/@differences.0 //@matches.0/@submatches.0/@differences.1" kind="DELETE">
+      <reference href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      <value href="../ecore_1.xmi#//Pet"/>
+    </differences>
+    <left href="../../../input/ecore_1.xmi#/"/>
+    <right href="../ecore_1.xmi#/"/>
+  </matches>
+</compare:Comparison>

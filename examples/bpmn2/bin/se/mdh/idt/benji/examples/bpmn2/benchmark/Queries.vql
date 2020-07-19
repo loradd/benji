@@ -1,0 +1,452 @@
+package se.mdh.idt.benji.examples.bpmn2.benchmark
+
+import "http://www.mdh.se/idt/benji/trace/Trace"
+import "http://www.mdh.se/idt/benji/examples/bpmn2"
+
+////////////////////////////////////////////////////////////////////////////
+// Move Element - Precondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern MoveElementPrecondition(
+	process: Trace, 								 
+	startEvent: Trace, task: Trace, endEvent: Trace, 
+	startEventToTask: Trace, taskToEndEvent: Trace 	 
+) {
+	
+	Trace.initial(startEvent, initialStartEvent);
+	Trace.current(startEvent, currentStartEvent);
+	StartEvent(initialStartEvent);
+	StartEvent(currentStartEvent);
+	
+	Trace.initial(task, initialTask);
+	Trace.current(task, currentTask);
+	Task.name(initialTask, taskName);
+	Task.name(currentTask, taskName);
+	taskName == "Deliver Goods";
+	
+	Trace.initial(endEvent, initialEndEvent);
+	Trace.current(endEvent, currentEndEvent);
+	EndEvent(initialEndEvent);
+	EndEvent(currentEndEvent);
+	
+	Trace.initial(startEventToTask, initialStartEventToTask);
+	Trace.current(startEventToTask, currentStartEventToTask);
+	SequenceFlow.sourceRef(initialStartEventToTask, initialStartEvent);
+	SequenceFlow.sourceRef(currentStartEventToTask, currentStartEvent);
+	SequenceFlow.targetRef(initialStartEventToTask, initialTask);
+	SequenceFlow.targetRef(currentStartEventToTask, currentTask);
+	
+	Trace.initial(taskToEndEvent, initialTaskToEndEvent);
+	Trace.current(taskToEndEvent, currentTaskToEndEvent);
+	SequenceFlow.sourceRef(initialTaskToEndEvent, initialTask);
+	SequenceFlow.sourceRef(currentTaskToEndEvent, currentTask);
+	SequenceFlow.targetRef(initialTaskToEndEvent, initialEndEvent);
+	SequenceFlow.targetRef(currentTaskToEndEvent, currentEndEvent);
+	
+	Trace.initial(process, initialProcess);
+	Trace.current(process, currentProcess);
+	Process.flowElements(initialProcess, initialStartEvent);
+	Process.flowElements(currentProcess, currentStartEvent);
+	Process.flowElements(initialProcess, initialTask);
+	Process.flowElements(currentProcess, currentTask);
+	Process.flowElements(initialProcess, initialEndEvent);
+	Process.flowElements(currentProcess, currentEndEvent);
+	Process.flowElements(initialProcess, initialStartEventToTask);
+	Process.flowElements(currentProcess, currentStartEventToTask);
+	Process.flowElements(initialProcess, initialTaskToEndEvent);
+	Process.flowElements(currentProcess, currentTaskToEndEvent);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Move Element - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern MoveElementPostcondition(
+	process: Trace, subProcess: Trace, 								 
+	startEvent: Trace, task: Trace, endEvent: Trace, 
+	startEventToTask: Trace, taskToEndEvent: Trace	 
+) {
+	
+	Trace.initial(startEvent, initialStartEvent);
+	Trace.current(startEvent, currentStartEvent);
+	StartEvent(initialStartEvent);
+	StartEvent(currentStartEvent);
+	
+	Trace.initial(task, initialTask);
+	Trace.current(task, currentTask);
+	Task.name(initialTask, taskName);
+	Task.name(currentTask, taskName);
+	taskName == "Deliver Goods";
+	
+	Trace.initial(endEvent, initialEndEvent);
+	Trace.current(endEvent, currentEndEvent);
+	EndEvent(initialEndEvent);
+	EndEvent(currentEndEvent);
+	
+	Trace.initial(startEventToTask, initialStartEventToTask);
+	Trace.current(startEventToTask, currentStartEventToTask);
+	SequenceFlow.sourceRef(initialStartEventToTask, initialStartEvent);
+	SequenceFlow.sourceRef(currentStartEventToTask, currentStartEvent);
+	SequenceFlow.targetRef(initialStartEventToTask, initialTask);
+	SequenceFlow.targetRef(currentStartEventToTask, currentTask);
+	
+	Trace.initial(taskToEndEvent, initialTaskToEndEvent);
+	Trace.current(taskToEndEvent, currentTaskToEndEvent);
+	SequenceFlow.sourceRef(initialTaskToEndEvent, initialTask);
+	SequenceFlow.sourceRef(currentTaskToEndEvent, currentTask);
+	SequenceFlow.targetRef(initialTaskToEndEvent, initialEndEvent);
+	SequenceFlow.targetRef(currentTaskToEndEvent, currentEndEvent);
+	
+	neg Trace.initial(subProcess, _initialSubProcess);
+	Trace.current(subProcess, currentSubProcess);
+	SubProcess.name(currentSubProcess, "Send Order");
+	SubProcess.flowElements(currentSubProcess, currentStartEvent);
+	SubProcess.flowElements(currentSubProcess, currentTask);
+	SubProcess.flowElements(currentSubProcess, currentEndEvent);
+	SubProcess.flowElements(currentSubProcess, currentStartEventToTask);
+	SubProcess.flowElements(currentSubProcess, currentTaskToEndEvent);
+	
+	Trace.initial(process, initialProcess);
+	Trace.current(process, currentProcess);
+	Process.flowElements(initialProcess, initialStartEvent);
+	Process.flowElements(initialProcess, initialTask);
+	Process.flowElements(initialProcess, initialEndEvent);
+	Process.flowElements(initialProcess, initialStartEventToTask);
+	Process.flowElements(initialProcess, initialTaskToEndEvent);
+	Process.flowElements(currentProcess, currentSubProcess);
+	
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////
+// Rename Element - Precondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern RenameElementPrecondition(task: Trace) {
+	
+	Trace.initial(task, initialTask);
+	Trace.current(task, currentTask);
+	Task.name(initialTask, taskName);
+	Task.name(currentTask, taskName);
+	taskName == "Deliver Goods";
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Rename Element - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern RenameElementPostcondition(task: Trace) {
+	
+	Trace.initial(task, initialTask);
+	Trace.current(task, currentTask);
+	Task.name(initialTask, "Deliver Goods");
+	Task.name(currentTask, "Send Items");
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Move Renamed Element - Precondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern MoveRenamedElementPrecondition(
+	process: Trace, 								 
+	startEvent: Trace, task: Trace, endEvent: Trace, 
+	startEventToTask: Trace, taskToEndEvent: Trace 	 
+) {
+	
+	Trace.initial(startEvent, initialStartEvent);
+	Trace.current(startEvent, currentStartEvent);
+	StartEvent(initialStartEvent);
+	StartEvent(currentStartEvent);
+	
+	Trace.initial(task, initialTask);
+	Trace.current(task, currentTask);
+	Task.name(initialTask, taskName);
+	Task.name(currentTask, taskName);
+	taskName == "Deliver Goods";
+	
+	Trace.initial(endEvent, initialEndEvent);
+	Trace.current(endEvent, currentEndEvent);
+	EndEvent(initialEndEvent);
+	EndEvent(currentEndEvent);
+	
+	Trace.initial(startEventToTask, initialStartEventToTask);
+	Trace.current(startEventToTask, currentStartEventToTask);
+	SequenceFlow.sourceRef(initialStartEventToTask, initialStartEvent);
+	SequenceFlow.sourceRef(currentStartEventToTask, currentStartEvent);
+	SequenceFlow.targetRef(initialStartEventToTask, initialTask);
+	SequenceFlow.targetRef(currentStartEventToTask, currentTask);
+	
+	Trace.initial(taskToEndEvent, initialTaskToEndEvent);
+	Trace.current(taskToEndEvent, currentTaskToEndEvent);
+	SequenceFlow.sourceRef(initialTaskToEndEvent, initialTask);
+	SequenceFlow.sourceRef(currentTaskToEndEvent, currentTask);
+	SequenceFlow.targetRef(initialTaskToEndEvent, initialEndEvent);
+	SequenceFlow.targetRef(currentTaskToEndEvent, currentEndEvent);
+	
+	Trace.initial(process, initialProcess);
+	Trace.current(process, currentProcess);
+	Process.flowElements(initialProcess, initialStartEvent);
+	Process.flowElements(currentProcess, currentStartEvent);
+	Process.flowElements(initialProcess, initialTask);
+	Process.flowElements(currentProcess, currentTask);
+	Process.flowElements(initialProcess, initialEndEvent);
+	Process.flowElements(currentProcess, currentEndEvent);
+	Process.flowElements(initialProcess, initialStartEventToTask);
+	Process.flowElements(currentProcess, currentStartEventToTask);
+	Process.flowElements(initialProcess, initialTaskToEndEvent);
+	Process.flowElements(currentProcess, currentTaskToEndEvent);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Move Renamed Element - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern MoveRenamedElementPostcondition(
+	process: Trace, subProcess: Trace, 								 
+	startEvent: Trace, task: Trace, endEvent: Trace, 
+	startEventToTask: Trace, taskToEndEvent: Trace	 
+) {
+	
+	Trace.initial(startEvent, initialStartEvent);
+	Trace.current(startEvent, currentStartEvent);
+	StartEvent(initialStartEvent);
+	StartEvent(currentStartEvent);
+	
+	Trace.initial(task, initialTask);
+	Trace.current(task, currentTask);
+	Task.name(initialTask, "Deliver Goods");
+	Task.name(currentTask, "Send Items");
+	
+	Trace.initial(endEvent, initialEndEvent);
+	Trace.current(endEvent, currentEndEvent);
+	EndEvent(initialEndEvent);
+	EndEvent(currentEndEvent);
+	
+	Trace.initial(startEventToTask, initialStartEventToTask);
+	Trace.current(startEventToTask, currentStartEventToTask);
+	SequenceFlow.sourceRef(initialStartEventToTask, initialStartEvent);
+	SequenceFlow.sourceRef(currentStartEventToTask, currentStartEvent);
+	SequenceFlow.targetRef(initialStartEventToTask, initialTask);
+	SequenceFlow.targetRef(currentStartEventToTask, currentTask);
+	
+	Trace.initial(taskToEndEvent, initialTaskToEndEvent);
+	Trace.current(taskToEndEvent, currentTaskToEndEvent);
+	SequenceFlow.sourceRef(initialTaskToEndEvent, initialTask);
+	SequenceFlow.sourceRef(currentTaskToEndEvent, currentTask);
+	SequenceFlow.targetRef(initialTaskToEndEvent, initialEndEvent);
+	SequenceFlow.targetRef(currentTaskToEndEvent, currentEndEvent);
+	
+	neg Trace.initial(subProcess, _initialSubProcess);
+	Trace.current(subProcess, currentSubProcess);
+	SubProcess.name(currentSubProcess, "Send Order");
+	SubProcess.flowElements(currentSubProcess, currentStartEvent);
+	SubProcess.flowElements(currentSubProcess, currentTask);
+	SubProcess.flowElements(currentSubProcess, currentEndEvent);
+	SubProcess.flowElements(currentSubProcess, currentStartEventToTask);
+	SubProcess.flowElements(currentSubProcess, currentTaskToEndEvent);
+	
+	Trace.initial(process, initialProcess);
+	Trace.current(process, currentProcess);
+	Process.flowElements(initialProcess, initialStartEvent);
+	Process.flowElements(initialProcess, initialTask);
+	Process.flowElements(initialProcess, initialEndEvent);
+	Process.flowElements(initialProcess, initialStartEventToTask);
+	Process.flowElements(initialProcess, initialTaskToEndEvent);
+	Process.flowElements(currentProcess, currentSubProcess);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Exchange Location of Elements - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern ExchangeLocationOfElementsPrecondition(
+	process: Trace, 
+	leftSubProcess: Trace, leftTask: Trace, 
+	rightSubProcess: Trace, rightTask: Trace
+) {
+	
+	Trace.initial(leftTask, initialLeftTask);
+	Trace.current(leftTask, currentLeftTask);
+	Task.name(initialLeftTask, leftTaskName);
+	Task.name(currentLeftTask, leftTaskName);
+	leftTaskName == "doSomething";
+	
+	Trace.initial(rightTask, initialRightTask);
+	Trace.current(rightTask, currentRightTask);
+	Task.name(initialRightTask, rightTaskName);
+	Task.name(currentRightTask, rightTaskName);
+	rightTaskName == "doSomethingNew";
+	
+	Trace.initial(leftSubProcess, initialLeftSubProcess);
+	Trace.current(rightSubProcess, currentRightSubProcess);
+	SubProcess.name(initialLeftSubProcess, leftSubProcessName);
+	SubProcess.name(currentLeftSubProcess, leftSubProcessName);
+	leftSubProcessName == "Left";
+	SubProcess.flowElements(initialLeftSubProcess, initialLeftTask);
+	SubProcess.flowElements(currentLeftSubProcess, currentLeftTask);
+	
+	Trace.initial(rightSubProcess, initialRightSubProcess);
+	Trace.current(rightSubProcess, currentRightSubProcess);
+	SubProcess.name(initialRightSubProcess, rightSubProcessName);
+	SubProcess.name(currentRightSubProcess, rightSubProcessName);
+	rightSubProcessName == "Right";
+	SubProcess.flowElements(initialRightSubProcess, initialRightTask);
+	SubProcess.flowElements(currentRightSubProcess, currentRightTask);
+	
+	Trace.initial(process, initialProcess);
+	Trace.current(process, currentProcess);
+	Process.flowElements(initialProcess, initialLeftSubProcess);
+	Process.flowElements(currentProcess, currentLeftSubProcess);
+	Process.flowElements(initialProcess, initialRightSubProcess);
+	Process.flowElements(currentProcess, currentRightSubProcess);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Move Renamed Element - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern ExchangeLocationOfElementsPostcondition(
+	process: Trace,
+	leftSubProcess: Trace, leftTask: Trace,
+	rightSubProcess: Trace, rightTask: Trace
+) {
+	
+	Trace.initial(leftTask, initialLeftTask);
+	Trace.current(leftTask, currentLeftTask);
+	Task.name(initialLeftTask, leftTaskName);
+	Task.name(currentLeftTask, leftTaskName);
+	leftTaskName == "doSomething";
+	
+	Trace.initial(rightTask, initialRightTask);
+	Trace.current(rightTask, currentRightTask);
+	Task.name(initialRightTask, rightTaskName);
+	Task.name(currentRightTask, rightTaskName);
+	rightTaskName == "doSomethingNew";
+	
+	Trace.initial(leftSubProcess, initialLeftSubProcess);
+	Trace.current(rightSubProcess, currentRightSubProcess);
+	SubProcess.name(initialLeftSubProcess, leftSubProcessName);
+	SubProcess.name(currentLeftSubProcess, leftSubProcessName);
+	leftSubProcessName == "Left";
+	SubProcess.flowElements(initialLeftSubProcess, initialLeftTask);
+	SubProcess.flowElements(currentLeftSubProcess, currentRightTask);
+	
+	Trace.initial(rightSubProcess, initialRightSubProcess);
+	Trace.current(rightSubProcess, currentRightSubProcess);
+	SubProcess.name(initialRightSubProcess, rightSubProcessName);
+	SubProcess.name(currentRightSubProcess, rightSubProcessName);
+	rightSubProcessName == "Right";
+	SubProcess.flowElements(initialRightSubProcess, initialRightTask);
+	SubProcess.flowElements(currentRightSubProcess, currentLeftTask);
+	
+	Trace.initial(process, initialProcess);
+	Trace.current(process, currentProcess);
+	Process.flowElements(initialProcess, initialLeftSubProcess);
+	Process.flowElements(currentProcess, currentLeftSubProcess);
+	Process.flowElements(initialProcess, initialRightSubProcess);
+	Process.flowElements(currentProcess, currentRightSubProcess);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Update Reference Target - Precondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern UpdateReferenceTargetPrecondition(
+	process: Trace,
+	taskOne: Trace, taskTwo: Trace, taskThree: Trace,
+	sequenceFlow: Trace
+) {
+	
+	Trace.initial(taskOne, initialTaskOne);
+	Trace.current(taskOne, currentTaskOne);
+	Task.name(initialTaskOne, taskOneName);
+	Task.name(currentTaskOne, taskOneName);
+	taskOneName == "Task 1";
+	
+	Trace.initial(taskTwo, initialTaskTwo);
+	Trace.current(taskTwo, currentTaskTwo);
+	Task.name(initialTaskTwo, taskTwoName);
+	Task.name(currentTaskTwo, taskTwoName);
+	taskTwoName == "Task 2";
+	
+	Trace.initial(taskThree, initialTaskThree);
+	Trace.current(taskThree, currentTaskThree);
+	Task.name(initialTaskThree, taskThreeName);
+	Task.name(currentTaskThree, taskThreeName);
+	taskThreeName == "Task 3";
+	
+	Trace.initial(sequenceFlow, initialSequenceFlow);
+	Trace.current(sequenceFlow, currentSequenceFlow);
+	SequenceFlow.sourceRef(initialSequenceFlow, initialTaskOne);
+	SequenceFlow.sourceRef(currentSequenceFlow, currentTaskOne);
+	SequenceFlow.targetRef(initialSequenceFlow, initialTaskTwo);
+	SequenceFlow.targetRef(currentSequenceFlow, currentTaskTwo);
+	
+	Trace.initial(process, initialProcess);
+	Trace.current(process, currentProcess);
+	Process.flowElements(initialProcess, initialTaskOne);
+	Process.flowElements(currentProcess, currentTaskOne);
+	Process.flowElements(initialProcess, initialTaskTwo);
+	Process.flowElements(currentProcess, currentTaskTwo);
+	Process.flowElements(initialProcess, initialTaskThree);
+	Process.flowElements(currentProcess, currentTaskThree);
+	Process.flowElements(initialProcess, initialSequenceFlow);
+	Process.flowElements(currentProcess, currentSequenceFlow);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Update Reference Target - Postcondition
+////////////////////////////////////////////////////////////////////////////
+
+pattern UpdateReferenceTargetPostcondition(
+	process: Trace,
+	taskOne: Trace, taskTwo: Trace, taskThree: Trace,
+	sequenceFlow: Trace
+) {
+	
+	Trace.initial(taskOne, initialTaskOne);
+	Trace.current(taskOne, currentTaskOne);
+	Task.name(initialTaskOne, taskOneName);
+	Task.name(currentTaskOne, taskOneName);
+	taskOneName == "Task 1";
+	
+	Trace.initial(taskTwo, initialTaskTwo);
+	Trace.current(taskTwo, currentTaskTwo);
+	Task.name(initialTaskTwo, taskTwoName);
+	Task.name(currentTaskTwo, taskTwoName);
+	taskTwoName == "Task 2";
+	
+	Trace.initial(taskThree, initialTaskThree);
+	Trace.current(taskThree, currentTaskThree);
+	Task.name(initialTaskThree, taskThreeName);
+	Task.name(currentTaskThree, taskThreeName);
+	taskThreeName == "Task 3";
+	
+	Trace.initial(sequenceFlow, initialSequenceFlow);
+	Trace.current(sequenceFlow, currentSequenceFlow);
+	SequenceFlow.sourceRef(initialSequenceFlow, initialTaskOne);
+	SequenceFlow.sourceRef(currentSequenceFlow, currentTaskOne);
+	SequenceFlow.targetRef(initialSequenceFlow, initialTaskTwo);
+	SequenceFlow.targetRef(currentSequenceFlow, currentTaskThree);
+	
+	Trace.initial(process, initialProcess);
+	Trace.current(process, currentProcess);
+	Process.flowElements(initialProcess, initialTaskOne);
+	Process.flowElements(currentProcess, currentTaskOne);
+	Process.flowElements(initialProcess, initialTaskTwo);
+	Process.flowElements(currentProcess, currentTaskTwo);
+	Process.flowElements(initialProcess, initialTaskThree);
+	Process.flowElements(currentProcess, currentTaskThree);
+	Process.flowElements(initialProcess, initialSequenceFlow);
+	Process.flowElements(currentProcess, currentSequenceFlow);
+	
+}

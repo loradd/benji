@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<compare:Comparison xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:compare="http://www.eclipse.org/emf/compare">
+  <matchedResources leftURI="file:/Users/lai02/development/benji/examples/ecore/benchmark/input/ecore_3.xmi" rightURI="file:/Users/lai02/development/benji/examples/ecore/benchmark/output/4dfbe345-ca41-48ab-a9a9-b8ec650dad8e/ecore_3.xmi"/>
+  <matches>
+    <submatches>
+      <submatches>
+        <differences xsi:type="compare:ReferenceChange" kind="CHANGE">
+          <reference href="http://www.mdh.se/idt/benji/examples/ecore#//Reference/type"/>
+          <value href="../../../input/ecore_3.xmi#//@classes.1"/>
+        </differences>
+        <left href="../../../input/ecore_3.xmi#//@classes.0/@references.0"/>
+        <right href="../ecore_3.xmi#//@classes.0/@references.0"/>
+      </submatches>
+      <left href="../../../input/ecore_3.xmi#//@classes.0"/>
+      <right href="../ecore_3.xmi#//@classes.0"/>
+    </submatches>
+    <submatches>
+      <left href="../../../input/ecore_3.xmi#//@classes.1"/>
+      <right href="../ecore_3.xmi#//@classes.1"/>
+    </submatches>
+    <submatches>
+      <left href="../../../input/ecore_3.xmi#//@classes.2"/>
+      <right href="../ecore_3.xmi#//@classes.2"/>
+    </submatches>
+    <left href="../../../input/ecore_3.xmi#/"/>
+    <right href="../ecore_3.xmi#/"/>
+  </matches>
+</compare:Comparison>

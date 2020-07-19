@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:Process
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bpmn2="http://www.mdh.se/idt/benji/examples/bpmn2"
+    xsi:schemaLocation="http://www.mdh.se/idt/benji/examples/bpmn2 ../../../se.mdh.idt.benji.examples.bpmn2/model/bpmn2.xcore#/EPackage"
+    id="process_1">
+  <flowElements
+      xsi:type="bpmn2:StartEvent"
+      id="StartEvent_1"
+      outgoing="SequenceFlow_1"/>
+  <flowElements
+      xsi:type="bpmn2:EndEvent"
+      id="EndEvent_1"
+      incoming="SequenceFlow_2"/>
+  <flowElements
+      xsi:type="bpmn2:Task"
+      id="Task_1"
+      outgoing="SequenceFlow_2"
+      incoming="SequenceFlow_1"
+      name="Deliver Goods"/>
+  <flowElements
+      xsi:type="bpmn2:SequenceFlow"
+      id="SequenceFlow_1"
+      sourceRef="StartEvent_1"
+      targetRef="Task_1"/>
+  <flowElements
+      xsi:type="bpmn2:SequenceFlow"
+      id="SequenceFlow_2"
+      sourceRef="Task_1"
+      targetRef="EndEvent_1"/>
+</bpmn2:Process>
