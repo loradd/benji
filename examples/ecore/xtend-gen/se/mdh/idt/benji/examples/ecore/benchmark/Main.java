@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
@@ -89,13 +88,6 @@ public class Main {
             final Resource outputModelResource = resourceSet.getResource(URI.createFileURI(outputModelPath.toAbsolutePath().toString()), true);
             final DefaultComparisonScope comparisonScope = new DefaultComparisonScope(inputModelResource, outputModelResource, null);
             final Comparison comparison = EMFCompare.builder().build().compare(comparisonScope);
-            URI _createFileURI = URI.createFileURI(Paths.get("benchmark", "output", IterableExtensions.<Path>last(outputModelPath.getParent()).toString(), "emf-compare", "Comparison.xmi").toAbsolutePath().toString());
-            final XMIResourceImpl comparisonResource = new XMIResourceImpl(_createFileURI);
-            final EcoreUtil.Copier copier = new EcoreUtil.Copier(false);
-            final EObject comparisonCopy = copier.copy(comparison);
-            copier.copyReferences();
-            comparisonResource.getContents().add(comparisonCopy);
-            comparisonResource.save(CollectionLiterals.<Object, Object>newHashMap());
             final HashMap<EObject, URI> eObjectToProxyURIMap = new HashMap<EObject, URI>();
             final ChangeRecorder changeRecorder = new ChangeRecorder();
             changeRecorder.setEObjectToProxyURIMap(eObjectToProxyURIMap);
@@ -107,8 +99,8 @@ public class Main {
             merger.copyAllRightToLeft(_differences, _basicMonitor);
             final ChangeDescription changeDescription = changeRecorder.endRecording();
             changeDescription.copyAndReverse(eObjectToProxyURIMap);
-            URI _createFileURI_1 = URI.createFileURI(Paths.get("benchmark", "output", IterableExtensions.<Path>last(outputModelPath.getParent()).toString(), "emf-compare", "Delta.xmi").toAbsolutePath().toString());
-            final XMIResourceImpl changeDescriptionResource = new XMIResourceImpl(_createFileURI_1);
+            URI _createFileURI = URI.createFileURI(Paths.get("benchmark", "output", IterableExtensions.<Path>last(outputModelPath.getParent()).toString(), "emf-compare", "Delta.xmi").toAbsolutePath().toString());
+            final XMIResourceImpl changeDescriptionResource = new XMIResourceImpl(_createFileURI);
             changeDescriptionResource.getContents().add(changeDescription);
             changeDescriptionResource.save(CollectionLiterals.<Object, Object>newHashMap());
           } catch (Throwable _e) {

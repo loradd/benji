@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.change.util.ChangeRecorder
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl
 import se.mdh.idt.benji.examples.ecore.EcorePackage
@@ -70,13 +69,6 @@ class Main {
 			 		val outputModelResource = resourceSet.getResource(URI.createFileURI(outputModelPath.toAbsolutePath.toString), true)
 			 		val comparisonScope = new DefaultComparisonScope(inputModelResource, outputModelResource, null)
 			 		val comparison = EMFCompare.builder().build.compare(comparisonScope)
-			 		val comparisonResource = new XMIResourceImpl(
-			 			URI.createFileURI(Paths.get("benchmark", "output", outputModelPath.parent.last.toString, "emf-compare", "Comparison.xmi").toAbsolutePath.toString))
-			 		val copier = new Copier(false)
-			 		val comparisonCopy = copier.copy(comparison)
-			 		copier.copyReferences
-			 		comparisonResource.contents.add(comparisonCopy)
-			 		comparisonResource.save(newHashMap)
 			 		val eObjectToProxyURIMap = new HashMap<EObject, URI>
 			 		val changeRecorder = new ChangeRecorder
 			 		changeRecorder.EObjectToProxyURIMap = eObjectToProxyURIMap
