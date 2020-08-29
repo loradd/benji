@@ -1,5 +1,9 @@
-# se.mdh.idt.benji
-Benji - Model Differencing Benchmark Generator
+# Benji
+Model Comparison Benchmark Generator
+
+## Demo
+
+[![BENJI DEMO](https://img.youtube.com/vi/qCobZBZhU_E/0.jpg)](https://www.youtube.com/watch?v=qCobZBZhU_E)
 
 ## License
 
